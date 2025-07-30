@@ -10,7 +10,10 @@ public class AiController : MonoBehaviour
 
     [Header("Configuração de detecção")]
     public LayerMask GroundLayer;
-    public bool CanJump = true;
+    [Header("Configuração de Decisão e Segurança")]
+    [Tooltip("Arraste aqui o asset de decisão que verifica bordas e segurança de pulo")]
+    public DetectEdgeOrWallDecision SafetyDecision;
+    public bool CanJump { get; set; } = true;
 
     public BoxCollider2D BoxCollider { get; private set; }  
     public Rigidbody2D Rb {  get; private set; }
@@ -40,8 +43,21 @@ public class AiController : MonoBehaviour
     {
         if(CurrentState != null)
         {
+            UpdateJumpPermission();
             CurrentState.Execute(this);
             CurrentState.CheckTransistions(this);
+        }
+    }
+
+    private void UpdateJumpPermission()
+    {
+        if (SafetyDecision != null)
+        {
+            CanJump = SafetyDecision.IsPlataformAheadSafe(this);
+        }
+        else
+        {
+            CanJump = true;
         }
     }
 

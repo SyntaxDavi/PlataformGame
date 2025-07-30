@@ -212,6 +212,5 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
-  CanJump: 1
-  EdgeCheckDistance: 1
+  SafetyDecision: {fileID: 11400000, guid: f5986a1107be1604eac1362c830c70a8, type: 2}
   FacingDirection: 1

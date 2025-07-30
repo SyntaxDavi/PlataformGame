@@ -15,5 +15,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
-  WallCheckDistance: 1
-  RaycastOffset: {x: 0, y: 0.5}
+  WallCheckDistance: 0.5
+  RaycastOffset: {x: 0, y: 1}
+  EnableJumpSafeCheck: 1
+  JumpSafetyDistance: 2.5

@@ -33,9 +33,10 @@ public class JumpingAction : AiState
         CheckTransistions(controller);
     }
 
-    public override void OnExit(AiController Controller)
+    public override void OnExit(AiController controller)
     {
-        Controller.Rb.gravityScale = OriginalGravityScale;
-        Controller.CanJump = true;
+        controller.Rb.gravityScale = OriginalGravityScale;
+        controller.CanJump = true;
+       
     }
 }
