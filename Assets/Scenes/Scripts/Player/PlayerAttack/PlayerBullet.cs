@@ -3,60 +3,53 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     [Header("Shot-Lifetime")]
-    [SerializeField]private float LifeTime = 2f;
-    public CharacterStats EnemyStats { get; set; }
-    public PlayerAttack PlayerAttackInstance; 
+    [SerializeField]private float timerAlive = 2f;
 
-    private float Timer;
-    private Vector2 MoveDirection;
+    private float bulletSpeed;
+    private float bulletDamage;
+    private Vector2 moveDirection;
+    private float lifeTimer;
 
     public void OnEnable()
     {
-        Timer = 0;
-        MoveDirection = Vector2.zero;
-        EnemyStats = null;
+        lifeTimer = 0f;
     }
     private void Update()
     {
-        if (PlayerAttackInstance == null)
+        transform.Translate(moveDirection * bulletSpeed * Time.deltaTime);
+
+        lifeTimer += Time.deltaTime;
+        if(lifeTimer >= timerAlive)
         {
-            Debug.LogWarning("PlayerAttackInstance não foi setado!");
+            gameObject.SetActive(false);
         }
-        BulletLifetime();
+    }
+    public void Setup(float speed, float damage, Vector2 direction)
+    {
+        this.moveDirection = direction;
+        this.bulletSpeed = speed;
+        this.bulletDamage = damage;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Inimigo"))
         {
             CharacterStats Enemy = collision.GetComponent<CharacterStats>();
+
             if (Enemy != null)
             {
-                Enemy.TakeDamage(PlayerAttackInstance.AttackDamage);
+                Enemy.TakeDamage(bulletDamage);
             }
             gameObject.SetActive(false);
         }
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             gameObject.SetActive(false);
         }
-    }
-    private void BulletLifetime()
-    {
-        if (PlayerAttackInstance != null) 
-        {
-            transform.Translate(PlayerAttackInstance.ShotBaseSpeed * Time.deltaTime * MoveDirection);
-        }
-
-        Timer += Time.deltaTime;
-
-        if (Timer >= LifeTime)
+        else if (!collision.CompareTag("Player"))
         {
             gameObject.SetActive(false);
         }
-    }
-    public void SetDirection(Vector2 Direction)
-    {
-        MoveDirection = Direction.normalized;
+
     }
 }

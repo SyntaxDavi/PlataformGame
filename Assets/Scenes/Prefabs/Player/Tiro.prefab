@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 657539611861136363}
   - component: {fileID: 1432333238147285170}
   - component: {fileID: -7960059760715425874}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tiro
   m_TagString: Tiro
   m_Icon: {fileID: 0}
@@ -147,5 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e133485acaeda4c9bc2dcfef3109f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  LifeTime: 1.5
+  timerAlive: 2

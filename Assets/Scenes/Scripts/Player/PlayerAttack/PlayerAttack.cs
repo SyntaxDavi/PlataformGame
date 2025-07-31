@@ -2,75 +2,71 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float SpaceOfShot = 0.05f;
-    private float AttackDuration = 0.2f;
-    private float AttackTimer = 0f;
+    [Header("Configuração Padrão (Sem arma)")]
+    [SerializeField] private float baseDamage = 5f;
+    [SerializeField] private float baseBulletSpeed = 10f;
+    [SerializeField] private float baseCoolDown = 1f;
 
-    public float ShotCoolDown = 2.5f;
-    public float AttackDamage = 5f;
+    [Header("Referências")]
+    [SerializeField] private PlayerMovement playerMovement;
 
-    private bool PlayerCanAttack = true;
-
-    public float ShotBaseSpeed { get; private set; } = 10f;
-    public bool IsPlayerAttacking { get; private set; }
+    [SerializeField] private float DistanceOffset = 0f;
     public Weapons CurrentWeapon { get; private set; }
-    private float TimeElapsed = 0f;
+    public bool IsPlayerAttacking { get; private set; }
 
+    private float CoolDownTimer = 0f;
+
+    public float CurrentDamage => CurrentWeapon != null ? CurrentWeapon.WeaponDamage : baseDamage;
+    public float CurrentBulletSpeed => CurrentWeapon != null ? CurrentWeapon.BulletSpeed : baseBulletSpeed;
+    public float CurrentCoolDown => CurrentWeapon != null ? CurrentWeapon.WeaponCoolDown : baseCoolDown;
+
+    private void Awake()
+    {
+        if (playerMovement != null)
+        {
+            playerMovement = GetComponent<PlayerMovement>();
+        }
+    }
 
     private void Update()
     {
-        PlayerCanAttack = CanShot();
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && PlayerCanAttack)
+       if(CoolDownTimer > 0)
         {
-            GameObject Shot = PoolSpawner.Instance.GetBullet(1);
-            IsPlayerAttacking = true;
-            AttackTimer = AttackDuration;
-
-            if (Shot != null)
-            {
-                Shot.SetActive(true);
-
-                Vector3 SpawnOffset = (Vector3)PlayerMovement.FacingDirection * SpaceOfShot;
-                Shot.transform.position = transform.position + SpawnOffset;
-                Shot.transform.rotation = Quaternion.identity;
-
-                var BulletScript = Shot.GetComponent<PlayerBullet>();
-                Shot.GetComponent<PlayerBullet>().SetDirection(PlayerMovement.FacingDirection);
-                BulletScript.PlayerAttackInstance = this;
-
-                ShotBaseSpeed = CurrentWeapon != null ? CurrentWeapon.BulletSpeed : ShotBaseSpeed;
-                AttackDamage = CurrentWeapon != null ? CurrentWeapon.WeaponDamage : AttackDamage;
-            }
-
-            TimeElapsed = 0f;
-            PlayerCanAttack = false;
+            CoolDownTimer -= Time.deltaTime;
         }
 
-        if (IsPlayerAttacking)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && CanAttack())
         {
-            AttackTimer -= Time.deltaTime;
-            if (AttackTimer <= 0f)
+            Attack();
+        }
+    }
+    private bool CanAttack()
+    {
+      return CoolDownTimer <= 0;
+    }
+
+    public void Attack()
+    {
+        CoolDownTimer = CurrentCoolDown;
+
+        GameObject bulletObject = PoolSpawner.Instance.GetBullet(1);
+
+        if (bulletObject != null)
+        {
+            Vector3 SpawnOffset = (Vector3)playerMovement.GetFacingDirection() * DistanceOffset;
+
+            bulletObject.transform.position = transform.position + SpawnOffset;
+            bulletObject.SetActive(true);
+
+            PlayerBullet bulletScript = bulletObject.GetComponent<PlayerBullet>();
+            if (bulletScript != null)
             {
-                IsPlayerAttacking = false;
+                bulletScript.Setup(direction: playerMovement.GetFacingDirection(), speed: CurrentBulletSpeed, damage: CurrentDamage);
             }
         }
     }
-    private bool CanShot()
+    public void SetWeapon(Weapons newWeapon)
     {
-        TimeElapsed += Time.deltaTime;
-        return TimeElapsed >= ShotCoolDown;
-    }
-
-    public void ResetCoolDown()
-    {
-        TimeElapsed = 2.5f;
-        PlayerCanAttack = true;
-    }
-    public void SetWeapon(Weapons weapon)
-    {
-        CurrentWeapon = weapon;
-        AttackDamage = weapon.WeaponDamage;
-        ShotCoolDown = weapon.WeaponCoolDown;
+        CurrentWeapon = newWeapon; 
     }
 }

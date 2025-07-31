@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement Instance { get; private set; }
-    public static PlayerAttack AttackScript;
+    public PlayerAttack AttackScript;
 
     public float BaseSpeed = 3f;
     public float JumpGravityScale = 1f;
@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform GroundCheck;
     public LayerMask GroundLayer;
-    public static Vector2 FacingDirection = Vector2.right;
+    private Vector2 facingDirection = Vector2.right;
 
     private float AttackBaseSpeed = 2.0f;
     private float MoveX = 0f;
@@ -32,12 +32,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody2D>();
-        if (rb == null) { Debug.LogError("RB nao encontrado"); }
-    }
-    void Start()
-    {
         AttackScript = GetComponent<PlayerAttack>();
-        Debug.Log("Game Started");
+
+        if (rb == null) { Debug.LogError("RB nao encontrado"); }
     }
     private void Update()
     {
@@ -69,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (AimInput != Vector2.zero)
         {
-            FacingDirection = AimInput.normalized;
+            facingDirection = AimInput.normalized;
         }
 
         float PlayerSpeed = AttackScript.IsPlayerAttacking ? AttackBaseSpeed : BaseSpeed;
@@ -82,5 +79,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.linearVelocity = new Vector2(MoveX * PlayerSpeed, rb.linearVelocity.y);
+    }
+
+    public Vector2 GetFacingDirection()
+    {
+        return facingDirection;
     }
 }

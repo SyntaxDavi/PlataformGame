@@ -1771,6 +1771,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0.80784315}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
+--- !u!114 &2097987156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+  m_PrefabInstance: {fileID: 9039555501775352593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66aaf253c91805f42878c620ffa2cfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2097987157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4642664909780495842, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+  m_PrefabInstance: {fileID: 9039555501775352593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2387ae725cacf63438957ff5ee7bf9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4616237347732565774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1866,7 +1888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2095707936956017023, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655150591070984609, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3872045743052328779, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1908,6 +1934,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4642664909780495842, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: AttackScript
+      value: 
+      objectReference: {fileID: 2097987156}
     - target: {fileID: 4821864604278279629, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
       propertyPath: MaxHealth
       value: 5
@@ -1920,6 +1950,10 @@ PrefabInstance:
       propertyPath: HealthBackground
       value: 
       objectReference: {fileID: 275128}
+    - target: {fileID: 5251004096705602678, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
       propertyPath: SpaceOfShot
       value: 2
@@ -1936,6 +1970,14 @@ PrefabInstance:
       propertyPath: AttackDuration
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: DistanceOffset
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 2097987157}
     - target: {fileID: 8480692030063868253, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
       propertyPath: m_Material
       value: 
