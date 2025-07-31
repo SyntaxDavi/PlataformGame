@@ -1920,6 +1920,22 @@ PrefabInstance:
       propertyPath: HealthBackground
       value: 
       objectReference: {fileID: 275128}
+    - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: SpaceOfShot
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: CoolDownTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: CurrentWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: c3dfedef7f697ce4abd3565997ead6d2, type: 2}
+    - target: {fileID: 6437468139617630754, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
+      propertyPath: AttackDuration
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8480692030063868253, guid: c4a9fc865856f17469ae1b70a5bedb88, type: 3}
       propertyPath: m_Material
       value: 

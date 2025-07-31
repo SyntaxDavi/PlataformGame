@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    public float Speed = 3;
-    public float LifeTime = 0.5f;
-    public float Damage {  get; set; }
+    [Header("Shot-Lifetime")]
+    [SerializeField]private float LifeTime = 2f;
     public CharacterStats EnemyStats { get; set; }
+    public PlayerAttack PlayerAttackInstance; 
 
     private float Timer;
     private Vector2 MoveDirection;
@@ -13,34 +13,41 @@ public class PlayerBullet : MonoBehaviour
     public void OnEnable()
     {
         Timer = 0;
+        MoveDirection = Vector2.zero;
+        EnemyStats = null;
     }
     private void Update()
     {
+        if (PlayerAttackInstance == null)
+        {
+            Debug.LogWarning("PlayerAttackInstance não foi setado!");
+        }
         BulletLifetime();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Inimigo"))
         {
-            PlayerAttack.ResetCoolDown();
-
             CharacterStats Enemy = collision.GetComponent<CharacterStats>();
             if (Enemy != null)
             {
-                Enemy.TakeDamage(Damage);
+                Enemy.TakeDamage(PlayerAttackInstance.AttackDamage);
             }
             gameObject.SetActive(false);
         }
 
-        if (collision.CompareTag("Chao"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            PlayerAttack.ResetCoolDown();
             gameObject.SetActive(false);
         }
     }
     private void BulletLifetime()
     {
-        transform.Translate(MoveDirection * Speed * Time.deltaTime);
+        if (PlayerAttackInstance != null) 
+        {
+            transform.Translate(PlayerAttackInstance.ShotBaseSpeed * Time.deltaTime * MoveDirection);
+        }
+
         Timer += Time.deltaTime;
 
         if (Timer >= LifeTime)
@@ -50,6 +57,6 @@ public class PlayerBullet : MonoBehaviour
     }
     public void SetDirection(Vector2 Direction)
     {
-         MoveDirection = Direction.normalized;
+        MoveDirection = Direction.normalized;
     }
 }

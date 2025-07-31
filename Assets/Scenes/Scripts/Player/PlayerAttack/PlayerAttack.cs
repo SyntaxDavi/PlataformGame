@@ -9,10 +9,12 @@ public class PlayerAttack : MonoBehaviour
     public float ShotCoolDown = 2.5f;
     public float AttackDamage = 5f;
 
-    private static bool PlayerCanAttack = true;
+    private bool PlayerCanAttack = true;
+
+    public float ShotBaseSpeed { get; private set; } = 10f;
     public bool IsPlayerAttacking { get; private set; }
     public Weapons CurrentWeapon { get; private set; }
-    private static float TimeElapsed = 0f;
+    private float TimeElapsed = 0f;
 
 
     private void Update()
@@ -27,16 +29,18 @@ public class PlayerAttack : MonoBehaviour
 
             if (Shot != null)
             {
-                Vector3 SpawnOffset = (Vector3) PlayerMovement.FacingDirection * SpaceOfShot;
+                Shot.SetActive(true);
+
+                Vector3 SpawnOffset = (Vector3)PlayerMovement.FacingDirection * SpaceOfShot;
                 Shot.transform.position = transform.position + SpawnOffset;
                 Shot.transform.rotation = Quaternion.identity;
 
                 var BulletScript = Shot.GetComponent<PlayerBullet>();
-                Shot.GetComponent<PlayerBullet>().SetDirection(PlayerMovement.FacingDirection); 
+                Shot.GetComponent<PlayerBullet>().SetDirection(PlayerMovement.FacingDirection);
+                BulletScript.PlayerAttackInstance = this;
 
-                BulletScript.Speed = CurrentWeapon != null ? CurrentWeapon.BulletSpeed : BulletScript.Speed;
-                BulletScript.Damage = CurrentWeapon.WeaponDamage;
-                Shot.SetActive(true);
+                ShotBaseSpeed = CurrentWeapon != null ? CurrentWeapon.BulletSpeed : ShotBaseSpeed;
+                AttackDamage = CurrentWeapon != null ? CurrentWeapon.WeaponDamage : AttackDamage;
             }
 
             TimeElapsed = 0f;
@@ -58,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
         return TimeElapsed >= ShotCoolDown;
     }
 
-    public static void ResetCoolDown()
+    public void ResetCoolDown()
     {
         TimeElapsed = 2.5f;
         PlayerCanAttack = true;

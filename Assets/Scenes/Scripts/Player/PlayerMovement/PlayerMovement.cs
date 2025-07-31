@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement Instance { get; private set; }
-    public static PlayerAttack AttackScript; 
+    public static PlayerAttack AttackScript;
 
     public float BaseSpeed = 3f;
     public float JumpGravityScale = 1f;
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        IsGrounded = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, GroundLayer); 
+        IsGrounded = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, GroundLayer);
     }
 
     private void CheckGravity()
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 AimInput = new Vector2(MoveHorizontal, MoveVertical);
 
-        if(AimInput != Vector2.zero)
+        if (AimInput != Vector2.zero)
         {
             FacingDirection = AimInput.normalized;
         }
