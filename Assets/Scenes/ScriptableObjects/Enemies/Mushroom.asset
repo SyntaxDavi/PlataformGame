@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mushroom
   m_EditorClassIdentifier: 
   MaxHealth: 30
-  BaseSpeed: 2
+  BaseSpeed: 2.5
   AttackDamage: 10
   AttackSpeed: 1
   GoldToDrop: 15

@@ -45,6 +45,8 @@ public class CharacterStats : MonoBehaviour
         //Anuncia que a vida mudou
         OnHeatlhChanged.Invoke(CurrentHealth);
 
+        Debug.Log("CurrentHealth = " + CurrentHealth);
+
         if(CurrentHealth <= 0)
         {
             Die();
@@ -61,7 +63,7 @@ public class CharacterStats : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 0.5f);
         }
     }      
 }

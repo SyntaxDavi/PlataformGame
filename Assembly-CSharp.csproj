@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scenes\Scripts\Actions\PeriodicDecision.cs" />
     <Compile Include="Assets\Scenes\Scripts\Inventory\Weapons.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiState.cs" />
-    <Compile Include="Assets\Scenes\Scripts\Plataform\PlataformSpawner.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AlwaysReturnTrue.cs" />
     <Compile Include="Assets\Scenes\Scripts\Plataform\PlataformLayout.cs" />
@@ -83,6 +82,7 @@
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemySpawner.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerHealth\PlayerHealth.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AIAction.cs" />
+    <Compile Include="Assets\Scenes\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scenes\Scripts\GameStats\interactionController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Actions\PatrolAction.cs" />
     <Compile Include="Assets\Scenes\Scripts\Actions\JumpingAction.cs" />

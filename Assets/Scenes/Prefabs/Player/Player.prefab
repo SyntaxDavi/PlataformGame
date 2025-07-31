@@ -37,8 +37,8 @@ Transform:
   m_LocalScale: {x: 0.5858, y: 0.887, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2582612478001143401}
   - {fileID: 7616457431368204158}
+  - {fileID: 2582612478001143401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3029648170724494810
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387ae725cacf63438957ff5ee7bf9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackScript: {fileID: 0}
   BaseSpeed: 8
   JumpGravityScale: 1.5
   FallGravityScale: 2.5
@@ -202,8 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66aaf253c91805f42878c620ffa2cfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotCoolDown: 0.5
-  AttackDamage: 10
+  baseDamage: 5
+  baseBulletSpeed: 10
+  baseCoolDown: 1
+  playerMovement: {fileID: 0}
+  DistanceOffset: 0
 --- !u!114 &4821864604278279629
 MonoBehaviour:
   m_ObjectHideFlags: 0

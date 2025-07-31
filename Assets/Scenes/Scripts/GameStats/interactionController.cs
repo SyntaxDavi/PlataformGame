@@ -3,7 +3,6 @@ using UnityEngine;
 public class interactionController : MonoBehaviour
 {
     public PlayerSpawner PSpawner;
-    public PlataformSpawner PlataformSpawner;
     public GameObject InteractionCanvas;
     private bool PlayerInRange = false;
 
@@ -23,7 +22,6 @@ public class interactionController : MonoBehaviour
             InteractionCanvas.SetActive(false);
 
             PSpawner.ResetPosition();
-            // PlataformSpawner.ReorganizePlataforms();
         }
     }
 
@@ -34,7 +32,6 @@ public class interactionController : MonoBehaviour
             PlayerInRange = true;
             InteractionCanvas.SetActive(true);
 
-           // Debug.Log("Player range true");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -43,7 +40,6 @@ public class interactionController : MonoBehaviour
         {
             PlayerInRange = false;
             InteractionCanvas.SetActive(false);
-           // Debug.Log("Player range false");
         }
     }
    

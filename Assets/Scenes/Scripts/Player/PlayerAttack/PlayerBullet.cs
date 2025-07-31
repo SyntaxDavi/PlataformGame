@@ -44,6 +44,7 @@ public class PlayerBullet : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            Debug.Log("Ground detectado");
             gameObject.SetActive(false);
         }
         else if (!collision.CompareTag("Player"))
