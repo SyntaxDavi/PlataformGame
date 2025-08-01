@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad554c7ea12c6f64f8b982e8f3e2386c, type: 3}
-  m_Name: DustDetectWall
+  m_Script: {fileID: 11500000, guid: e179924da822ca14bb5d9e000def7ed9, type: 3}
+  m_Name: Biomes1SecondRoom
   m_EditorClassIdentifier: 
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  WallCheckDistance: 0.5
-  RaycastOffset: {x: 0, y: 1}
-  EnableJumpSafeCheck: 1
-  JumpSafetyDistance: 1.8
+  layoutPrefab: {fileID: 0}
+  roomType: 0

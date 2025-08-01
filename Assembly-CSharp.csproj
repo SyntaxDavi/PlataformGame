@@ -61,9 +61,11 @@
     <Analyzer Include="D:\Unity Installer\6000.1.4f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scenes\Scripts\Rooms\RoomExit.cs" />
     <Compile Include="Assets\Scenes\Scripts\Actions\PeriodicDecision.cs" />
     <Compile Include="Assets\Scenes\Scripts\Inventory\Weapons.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiState.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Rooms\RunManager.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AlwaysReturnTrue.cs" />
     <Compile Include="Assets\Scenes\Scripts\Plataform\PlataformLayout.cs" />
@@ -71,8 +73,11 @@
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyStatSheet.cs" />
     <Compile Include="Assets\Scenes\Scripts\GameStats\PoolSpawner.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerAttack\PlayerAttack.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Rooms\RoomData.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Player\PlayerMovement\CameraFollow.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerMovement\PlayerMovement.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Rooms\BiomeData.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiDecision.cs" />
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyDeathHandler.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\DetectEdgeOrWallDecision.cs" />
@@ -82,7 +87,6 @@
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemySpawner.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerHealth\PlayerHealth.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AIAction.cs" />
-    <Compile Include="Assets\Scenes\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scenes\Scripts\GameStats\interactionController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Actions\PatrolAction.cs" />
     <Compile Include="Assets\Scenes\Scripts\Actions\JumpingAction.cs" />

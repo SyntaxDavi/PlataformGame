@@ -18,7 +18,6 @@ public class SRPlataformSpawner : MonoBehaviour
     {
         if (EnemySpawner == null)
         {
-            Debug.LogError("A referência ao EnemySpawner não está configurada no Inspector!");
             return;
         }
         SpawnRandomLayout();
@@ -33,31 +32,43 @@ public class SRPlataformSpawner : MonoBehaviour
 
         if (LayoutPrefabs.Count == 0)
         {
-            Debug.LogError("A lista de LayoutPrefabs está vazia! Adicione os prefabs no Inspector.");
             return;
         }
-
-        // 1. Spawna o layout
 
         int randomIndex = Random.Range(0, LayoutPrefabs.Count);
         GameObject chosenLayoutPrefab = LayoutPrefabs[randomIndex];
         CurrentLayoutInstance = Instantiate(chosenLayoutPrefab, transform.position, Quaternion.identity);
         Debug.Log(chosenLayoutPrefab);
 
-        // 2. Encontra o container de pontos de spawn DENTRO do layout que acabamos de criar
         Transform SpawnPointsContainer = CurrentLayoutInstance.transform.Find(SPAWN_POINTS_CONTAINER_NAME);
-
-        // 3. Informa ao EnemySpawner sobre o novo container
 
         if(SpawnPointsContainer != null)
         {
             EnemySpawner.InitializeForLayout(SpawnPointsContainer);
             EnemySpawner.SpawnAllEnemies();
         }
-        else
+    }
+    public void SpawnSpecificLayout(GameObject layoutPrefab)
+    {
+        if (CurrentLayoutInstance != null)
         {
-            Debug.LogError($"Não foi possível encontrar o objeto filho '{SPAWN_POINTS_CONTAINER_NAME}' no prefab de layout '{chosenLayoutPrefab.name}'!");
+            Destroy(CurrentLayoutInstance);
+        }
+
+        if (layoutPrefab == null)
+        {
+            Debug.LogError("Recebeu um prefab de layout nulo para spawnar!");
+            return;
+        }
+
+        CurrentLayoutInstance = Instantiate(layoutPrefab, transform.position, Quaternion.identity);
+
+        Transform SpawnPointsContainer = CurrentLayoutInstance.transform.Find(SPAWN_POINTS_CONTAINER_NAME);
+
+        if (SpawnPointsContainer != null)
+        {
+            EnemySpawner.InitializeForLayout(SpawnPointsContainer);
+            EnemySpawner.SpawnAllEnemies();
         }
     }
-
 }
