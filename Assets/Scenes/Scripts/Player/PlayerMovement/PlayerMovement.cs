@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Variaves de estado (privadas)
 
-    private float moveInput;
+    private float horizontalInput;
+    private float verticalInput;
     private bool isFacingRight = true;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Propriedades públicas 
     public bool IsGrounded {  get; private set; }
+    public Vector2 RawInputDirection { get; private set; }
     public Vector2 FacingDirection => isFacingRight ? Vector2.right : Vector2.left;
 
     public void Awake()
@@ -65,7 +67,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HandleInput()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        RawInputDirection = new Vector2(horizontalInput, verticalInput).normalized;
 
         // Buffer de pulo (pressionou pulo)
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
@@ -111,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         float currentSpeed = isAttacking ? attackingMoveSpeed : moveSpeed;
-        rb.linearVelocity = new Vector2(moveInput * currentSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
     }
     private void HandleJump()
     {
@@ -137,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipCharacter()
     {
-        if((isFacingRight && moveInput < 0) || (!isFacingRight && moveInput > 0))
+        if((isFacingRight && horizontalInput < 0) || (!isFacingRight && horizontalInput > 0))
         {
             isFacingRight = !isFacingRight;
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);

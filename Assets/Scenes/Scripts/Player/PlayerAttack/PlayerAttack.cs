@@ -30,26 +30,27 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-       if(CoolDownTimer > 0)
-        {
-            CoolDownTimer -= Time.deltaTime;
-        }
+        UpdateAttackCoolDown();
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && CanAttack())
         {
             playerMovement.SetAttackingState(true);
             Attack();
         }
+    }
 
-        if (CoolDownTimer > 0)
+    private void UpdateAttackCoolDown()
+    {
+        if(CoolDownTimer > 0)
         {
             CoolDownTimer -= Time.deltaTime;
-            if (CoolDownTimer <= 0)
+
+            if(CoolDownTimer <= 0)
             {
+                CoolDownTimer = 0f;
                 playerMovement.SetAttackingState(false);
             }
         }
-
     }
     private bool CanAttack()
     {
@@ -63,7 +64,13 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletObject != null)
         {
-            Vector3 spawnDirection = (Vector3)playerMovement.FacingDirection;
+            Vector2 fireDirection = playerMovement.RawInputDirection;
+            if(fireDirection == Vector2.zero)
+            {
+                fireDirection = playerMovement.FacingDirection;
+            }
+
+            Vector3 spawnDirection = fireDirection;
             Vector3 SpawnOffset = spawnDirection * DistanceOffset;
 
             bulletObject.transform.position = transform.position + SpawnOffset;

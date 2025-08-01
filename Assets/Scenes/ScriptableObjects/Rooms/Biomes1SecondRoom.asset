@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e179924da822ca14bb5d9e000def7ed9, type: 3}
   m_Name: Biomes1SecondRoom
   m_EditorClassIdentifier: 
-  layoutPrefab: {fileID: 0}
+  layoutPrefab: {fileID: 40274913307147180, guid: 46e228d8d0c7bb64fa1bf6fc1df72f82, type: 3}
   roomType: 0

@@ -21,7 +21,6 @@ public class interactionController : MonoBehaviour
             Debug.Log("Player interagiu com o objeto!");
             InteractionCanvas.SetActive(false);
 
-            PSpawner.ResetPosition();
         }
     }
 

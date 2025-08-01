@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf3bb899bacf1f41b38b3de6d58ad50, type: 3}
   m_Name: MushromBiome
   m_EditorClassIdentifier: 
-  biomeName: 
-  combatRooms: []
+  biomeName: MushRoom Place
+  combatRooms:
+  - {fileID: 11400000, guid: 495fbedec5308564cbda52b493ae4d4f, type: 2}
+  - {fileID: 11400000, guid: 93a74f48e36888f46b86f1fe4af5f27e, type: 2}
   ShopRoom: {fileID: 0}
   miniBossRoom: {fileID: 0}
-  combatRoomsBeforeBoss: 10
+  combatRoomsBeforeBoss: 3
   finalBossRoom: {fileID: 0}
