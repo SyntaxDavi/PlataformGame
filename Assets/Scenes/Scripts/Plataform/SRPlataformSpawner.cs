@@ -3,52 +3,24 @@ using UnityEngine;
 
 public class SRPlataformSpawner : MonoBehaviour
 {
-    [Header("Configuração dos Layouts")]
-    [Tooltip("Arraste todos os seus PREFABS de layout para esta lista.")]
-    public List<GameObject> LayoutPrefabs;
-
     [Header("Dependências")]
     [Tooltip("Arraste o GameObject que contém o script EnemySpawner aqui.")]
-    public EnemySpawner EnemySpawner;
+    [SerializeField] private EnemySpawner enemySpawner;
 
     private GameObject CurrentLayoutInstance;
     private const string SPAWN_POINTS_CONTAINER_NAME = "EnemySpawnPoints";
 
     private void Start()
     {
-        if (EnemySpawner == null)
+        if (enemySpawner == null)
         {
+            Debug.LogError("A referência ao EnemySpawner não foi configurada no SRPlataformSpawner!", this);
+            enabled = false;
             return;
         }
-        SpawnRandomLayout();
     }
 
-    public void SpawnRandomLayout()
-    {
-        if (CurrentLayoutInstance != null)
-        {
-            Destroy(CurrentLayoutInstance);
-        }
-
-        if (LayoutPrefabs.Count == 0)
-        {
-            return;
-        }
-
-        int randomIndex = Random.Range(0, LayoutPrefabs.Count);
-        GameObject chosenLayoutPrefab = LayoutPrefabs[randomIndex];
-        CurrentLayoutInstance = Instantiate(chosenLayoutPrefab, transform.position, Quaternion.identity);
-        Debug.Log(chosenLayoutPrefab);
-
-        Transform SpawnPointsContainer = CurrentLayoutInstance.transform.Find(SPAWN_POINTS_CONTAINER_NAME);
-
-        if(SpawnPointsContainer != null)
-        {
-            EnemySpawner.InitializeForLayout(SpawnPointsContainer);
-            EnemySpawner.SpawnAllEnemies();
-        }
-    }
-    public void SpawnSpecificLayout(GameObject layoutPrefab)
+    public void SpawnLayout(GameObject layoutPrefab)
     {
         if (CurrentLayoutInstance != null)
         {
@@ -57,18 +29,23 @@ public class SRPlataformSpawner : MonoBehaviour
 
         if (layoutPrefab == null)
         {
-            Debug.LogError("Recebeu um prefab de layout nulo para spawnar!");
+            Debug.LogError("O RunManager tentou spawnar um prefab de layout nulo!", this);
             return;
         }
 
         CurrentLayoutInstance = Instantiate(layoutPrefab, transform.position, Quaternion.identity);
 
-        Transform SpawnPointsContainer = CurrentLayoutInstance.transform.Find(SPAWN_POINTS_CONTAINER_NAME);
+        Transform spawnPointsContainer = CurrentLayoutInstance.transform.Find(SPAWN_POINTS_CONTAINER_NAME);
 
-        if (SpawnPointsContainer != null)
+        if (spawnPointsContainer != null)
         {
-            EnemySpawner.InitializeForLayout(SpawnPointsContainer);
-            EnemySpawner.SpawnAllEnemies();
+            enemySpawner.InitializeForLayout(spawnPointsContainer);
+            enemySpawner.SpawnAllEnemies();
+        }
+        else
+        {
+            Debug.LogWarning($"Layout '{layoutPrefab.name}' não contém um container de spawn de inimigos ('{SPAWN_POINTS_CONTAINER_NAME}'). Nenhum inimigo será spawnado.", this);
+            enemySpawner.InitializeForLayout(null);
         }
     }
 }

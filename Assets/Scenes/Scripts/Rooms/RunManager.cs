@@ -57,7 +57,7 @@ public class RunManager : MonoBehaviour
         if(roomsClearedInBiome >= currentBiome.combatRoomsBeforeBoss)
         {
             //Sala do boss
-            plataformSpawner.SpawnSpecificLayout(currentBiome.finalBossRoom.layoutPrefab);
+            plataformSpawner.SpawnLayout(currentBiome.finalBossRoom.layoutPrefab);
 
             // vai para loja / lugar de descanso
         }
@@ -72,7 +72,7 @@ public class RunManager : MonoBehaviour
             RoomData chosenRoom = availableCombatRooms[randomIndex];
             availableCombatRooms.RemoveAt(randomIndex); //remove para nao repitir tãoo cedo
 
-            plataformSpawner.SpawnSpecificLayout(chosenRoom.layoutPrefab);
+            plataformSpawner.SpawnLayout(chosenRoom.layoutPrefab);
         }
         // TODO: Posicionar o jogador no ponto de início da nova sala
         // playerSpawner.RespawnPlayerAtStartPoint();

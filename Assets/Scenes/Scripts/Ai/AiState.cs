@@ -5,9 +5,9 @@ public abstract class AiState : ScriptableObject
     // O que fazer enquanto estiver neste estado
     public abstract void Execute(AiController controller);
     // O que fazer ao entrar neste estado pela primeira vez
-    public virtual void OnEnter(AiController Controller) { }
+    public virtual void OnEnter(AiController controller) { }
     // Sair do estado
-    public virtual void OnExit(AiController Controller) { }
+    public virtual void OnExit(AiController controller) { }
 
     [SerializeField]
     private AiTransition[] Transitions;

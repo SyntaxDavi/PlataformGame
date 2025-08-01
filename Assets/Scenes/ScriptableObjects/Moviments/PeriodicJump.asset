@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4d8c44ff80dd14083a293a3c2f5e79, type: 3}
   m_Name: PeriodicJump
   m_EditorClassIdentifier: 
-  Interval: 10
+  Interval: 7
