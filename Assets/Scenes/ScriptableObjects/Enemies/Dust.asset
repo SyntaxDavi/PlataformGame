@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dust
   m_EditorClassIdentifier: 
   MaxHealth: 20
-  BaseSpeed: 4
+  BaseSpeed: 3.5
   AttackDamage: 10
   AttackSpeed: 1
   GoldToDrop: 10

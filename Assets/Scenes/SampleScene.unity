@@ -1852,8 +1852,8 @@ Transform:
   m_GameObject: {fileID: 6460992767971240624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0007, y: -0.4547, z: 0}
-  m_LocalScale: {x: 1.570172, y: 0.14508288, z: 1}
+  m_LocalPosition: {x: 0.0037889779, y: -0.17010723, z: 0}
+  m_LocalScale: {x: 1.0061399, y: 0.14508288, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5246331565877623898}
@@ -1951,16 +1951,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387ae725cacf63438957ff5ee7bf9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackScript: {fileID: 2604357116016904499}
-  BaseSpeed: 8
-  JumpGravityScale: 1.5
-  FallGravityScale: 2.5
-  JumpForce: 20
-  GroundCheckRadius: 0.1
-  GroundCheck: {fileID: 1495727771570834543}
-  GroundLayer:
+  moveSpeed: 6
+  attackingMoveSpeed: 5
+  JumpForce: 17.5
+  FallGravityMultiplier: 3.5
+  JumpCutMultiplier: 0.8
+  groundCheck: {fileID: 1495727771570834543}
+  groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundCheckRadius: 0.3
+  coyoteTime: 0.3
+  jumpBufferTime: 0.3
 --- !u!114 &4582491350816407260
 MonoBehaviour:
   m_ObjectHideFlags: 0

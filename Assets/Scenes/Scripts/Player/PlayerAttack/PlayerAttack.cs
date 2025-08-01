@@ -37,8 +37,19 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && CanAttack())
         {
+            playerMovement.SetAttackingState(true);
             Attack();
         }
+
+        if (CoolDownTimer > 0)
+        {
+            CoolDownTimer -= Time.deltaTime;
+            if (CoolDownTimer <= 0)
+            {
+                playerMovement.SetAttackingState(false);
+            }
+        }
+
     }
     private bool CanAttack()
     {
@@ -48,12 +59,12 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         CoolDownTimer = CurrentCoolDown;
-
         GameObject bulletObject = PoolSpawner.Instance.GetBullet(1);
 
         if (bulletObject != null)
         {
-            Vector3 SpawnOffset = (Vector3)playerMovement.GetFacingDirection() * DistanceOffset;
+            Vector3 spawnDirection = (Vector3)playerMovement.FacingDirection;
+            Vector3 SpawnOffset = spawnDirection * DistanceOffset;
 
             bulletObject.transform.position = transform.position + SpawnOffset;
             bulletObject.SetActive(true);
@@ -61,7 +72,7 @@ public class PlayerAttack : MonoBehaviour
             PlayerBullet bulletScript = bulletObject.GetComponent<PlayerBullet>();
             if (bulletScript != null)
             {
-                bulletScript.Setup(direction: playerMovement.GetFacingDirection(), speed: CurrentBulletSpeed, damage: CurrentDamage);
+                bulletScript.Setup(direction: spawnDirection, speed: CurrentBulletSpeed, damage: CurrentDamage);
             }
         }
     }

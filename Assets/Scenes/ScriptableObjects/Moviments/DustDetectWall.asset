@@ -18,4 +18,4 @@ MonoBehaviour:
   WallCheckDistance: 0.5
   RaycastOffset: {x: 0, y: 1}
   EnableJumpSafeCheck: 1
-  JumpSafetyDistance: 2.5
+  JumpSafetyDistance: 1.5
