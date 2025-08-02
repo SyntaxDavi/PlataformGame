@@ -29,7 +29,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-        CurrentHealth = Damage;
+        CurrentHealth -= Damage;
+        CurrentHealth = Mathf.Max(0, CurrentHealth);
         LifeHudRefresh();
 
         if (CurrentHealth <= 0)
