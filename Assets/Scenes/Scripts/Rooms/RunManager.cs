@@ -80,7 +80,7 @@ public class RunManager : MonoBehaviour
 
             int randomIndex = Random.Range(0, availableCombatRooms.Count);
             RoomData chosenRoom = availableCombatRooms[randomIndex];
-            availableCombatRooms.RemoveAt(randomIndex); //remove para nao repitir tãoo cedo
+            availableCombatRooms.RemoveAt(randomIndex); //remove para nao repetir tãoo cedo
 
             plataformSpawner.SpawnLayout(chosenRoom.layoutPrefab);
         }

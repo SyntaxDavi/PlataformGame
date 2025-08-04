@@ -40,7 +40,7 @@ public class CharacterStats : MonoBehaviour
         if (CurrentHealth <= 0) return;
 
         CurrentHealth -= Damage;
-        CurrentHealth = Mathf.Max(CurrentHealth, 0); //Garente que a vida nao fique negativa
+        CurrentHealth = Mathf.Max(CurrentHealth, 0); //Garante que a vida nao fique negativa
 
         //Anuncia que a vida mudou
         OnHeatlhChanged.Invoke(CurrentHealth);

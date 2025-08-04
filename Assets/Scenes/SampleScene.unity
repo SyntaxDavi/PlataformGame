@@ -206,7 +206,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275128}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1662,15 +1662,15 @@ MonoBehaviour:
   moveSpeed: 6
   attackingMoveSpeed: 3
   JumpForce: 17.5
-  FallGravityMultiplier: 3.5
-  JumpCutMultiplier: 0.8
+  FallGravityMultiplier: 5
+  JumpCutMultiplier: 0.3
   groundCheck: {fileID: 1495727771570834543}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   rayDistance: 0.1
   coyoteTime: 0.2
-  jumpBufferTime: 0.2
+  jumpBufferTime: 0.1
 --- !u!114 &4582491350816407260
 MonoBehaviour:
   m_ObjectHideFlags: 0

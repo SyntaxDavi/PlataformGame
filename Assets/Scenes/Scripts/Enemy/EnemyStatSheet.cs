@@ -8,7 +8,7 @@ public class EnemyStatSheet : ScriptableObject
     public float BaseSpeed = 3f;
 
     [Header("Combate")]
-    public float AttackDamage = 10f;
+    public float AttackDamage = 10;
     public float AttackSpeed = 1f;
 
     [Header("Recompensas")]

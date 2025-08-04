@@ -16,7 +16,7 @@ MonoBehaviour:
   combatRooms:
   - {fileID: 11400000, guid: 495fbedec5308564cbda52b493ae4d4f, type: 2}
   - {fileID: 11400000, guid: 93a74f48e36888f46b86f1fe4af5f27e, type: 2}
-  mainRoom: {fileID: 11400000, guid: f0b15cffca29cfe42954f1b6b5d2adbe, type: 2}
+  mainRoom: {fileID: 11400000, guid: 495fbedec5308564cbda52b493ae4d4f, type: 2}
   ShopRoom: {fileID: 0}
   miniBossRoom: {fileID: 0}
   combatRoomsBeforeBoss: 2

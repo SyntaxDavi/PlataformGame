@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 30
   BaseSpeed: 2.5
-  AttackDamage: 10
+  AttackDamage: 1
   AttackSpeed: 1
   GoldToDrop: 15

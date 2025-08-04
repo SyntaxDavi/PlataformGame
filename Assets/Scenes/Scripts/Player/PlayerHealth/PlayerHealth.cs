@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,21 +8,37 @@ public class PlayerHealth : MonoBehaviour
     public float MaxHealth;
     public float CurrentHealth;
 
+    private List<GameObject> healthIcons = new List<GameObject>();
+
     public void Start()
     {
         CurrentHealth = MaxHealth;
+
+        foreach(Transform child in HealthBackground.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for(int i = 0; i < MaxHealth; i++)
+        {
+            GameObject newIcon = Instantiate(PrefabHealth, HealthBackground.transform);
+            healthIcons.Add(newIcon);
+        }
+
         LifeHudRefresh();
     }
     void LifeHudRefresh()
     {
-        foreach(Transform child in HealthBackground.transform)
+       for(int i = 0; i < healthIcons.Count; i++)
         {
-            Destroy(child);
-        }
-
-        for(int i = 0; i < CurrentHealth; i++)
-        {
-            Instantiate(PrefabHealth, HealthBackground.transform);
+            if(i < CurrentHealth)
+            {
+                healthIcons[i].SetActive(true);
+            }
+            else
+            {
+                healthIcons[i].SetActive(false);
+            }
         }
     }
 
@@ -31,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
     {
         CurrentHealth -= Damage;
         CurrentHealth = Mathf.Max(0, CurrentHealth);
+
         LifeHudRefresh();
 
         if (CurrentHealth <= 0)

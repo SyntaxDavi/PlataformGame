@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scenes\Scripts\Rooms\BiomeData.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiDecision.cs" />
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyDeathHandler.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\DetectEdgeOrWallDecision.cs" />
     <Compile Include="Assets\Scenes\Scripts\GameStats\CharacterStats.cs" />
     <Compile Include="Assets\Scenes\Scripts\Actions\TurnState.cs" />

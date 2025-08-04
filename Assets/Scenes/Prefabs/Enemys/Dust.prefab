@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3752754755479266641}
   - component: {fileID: -5520822273433223883}
   - component: {fileID: -6807506828174684097}
+  - component: {fileID: 591433399794738477}
   m_Layer: 6
   m_Name: Dust
   m_TagString: Inimigo
@@ -214,3 +215,15 @@ MonoBehaviour:
     m_Bits: 8
   SafetyDecision: {fileID: 11400000, guid: a24d3c5135cf9ae4f9f46a3108992a3b, type: 2}
   FacingDirection: 1
+--- !u!114 &591433399794738477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463493858494740847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a0bba10b201764a9e69bfa381b0f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2342874930583485373}
   - component: {fileID: -1722877080623358744}
   - component: {fileID: 1135122372138799222}
+  - component: {fileID: 4700318670809528070}
   m_Layer: 6
   m_Name: Mushroom
   m_TagString: Inimigo
@@ -214,3 +215,15 @@ MonoBehaviour:
     m_Bits: 8
   SafetyDecision: {fileID: 11400000, guid: f5986a1107be1604eac1362c830c70a8, type: 2}
   FacingDirection: 1
+--- !u!114 &4700318670809528070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496163268124233506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a0bba10b201764a9e69bfa381b0f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
