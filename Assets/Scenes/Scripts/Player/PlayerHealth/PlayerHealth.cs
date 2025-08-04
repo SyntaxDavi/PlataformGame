@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,38 +7,10 @@ public class PlayerHealth : MonoBehaviour
     public float MaxHealth;
     public float CurrentHealth;
 
-    private List<GameObject> healthIcons = new List<GameObject>();
-
     public void Start()
     {
         CurrentHealth = MaxHealth;
-
-        foreach(Transform child in HealthBackground.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        for(int i = 0; i < MaxHealth; i++)
-        {
-            GameObject newIcon = Instantiate(PrefabHealth, HealthBackground.transform);
-            healthIcons.Add(newIcon);
-        }
-
-        LifeHudRefresh();
-    }
-    void LifeHudRefresh()
-    {
-       for(int i = 0; i < healthIcons.Count; i++)
-        {
-            if(i < CurrentHealth)
-            {
-                healthIcons[i].SetActive(true);
-            }
-            else
-            {
-                healthIcons[i].SetActive(false);
-            }
-        }
+        GameEvents.TriggerPlayerHealthChanged(CurrentHealth,MaxHealth);    
     }
 
     public void TakeDamage(float Damage)
@@ -47,11 +18,12 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth -= Damage;
         CurrentHealth = Mathf.Max(0, CurrentHealth);
 
-        LifeHudRefresh();
+        GameEvents.TriggerPlayerHealthChanged(CurrentHealth, MaxHealth);
 
         if (CurrentHealth <= 0)
         {
-            CurrentHealth = 0;
+            Debug.Log("TriggerPlayeDeath Chamado");
+            GameEvents.TriggerPlayerDeath();
             gameObject.SetActive(false);
         }
     }

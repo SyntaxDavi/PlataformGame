@@ -3,7 +3,18 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     public Vector3 StartPosition;
-    void Start()
+
+    private void OnEnable()
+    {
+        GameEvents.OnRoomLoaded += OnRoomLoadedHandler;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnRoomLoaded -= OnRoomLoadedHandler;
+    }
+
+    private void OnRoomLoadedHandler()
     {
         ResetPosition();
     }

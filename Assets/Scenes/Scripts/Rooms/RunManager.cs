@@ -8,7 +8,6 @@ public class RunManager : MonoBehaviour
     [Header("Configuração da Run")]
     [Tooltip("Lista ORDENADA dos biomas do jogo")]
     [SerializeField] private List<BiomeData> biomeProgression;
-
     [SerializeField] private PlayerSpawner playerSpawner;
     [SerializeField] private SRPlataformSpawner plataformSpawner;
 
@@ -29,6 +28,23 @@ public class RunManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    private void OnEnable()
+    {
+        Debug.Log("RunManager se inscrevendo no evento OnPlayerReachedRoomExit.");
+        GameEvents.OnPlayerReachedRoomExit += HandlePlayerReachedEndOfRoom;
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("RunManager se desinscrevendo do evento.");
+        GameEvents.OnPlayerReachedRoomExit -= HandlePlayerReachedEndOfRoom;
+    }
+
+    private void HandlePlayerReachedEndOfRoom()
+    {
+        Debug.Log("RunManager ouviu o evento PlayerReachedEndOfRoom. Carregando próxima sala...");
+        LoadNextRoom();
+    }
     private void Start()
     {
         StartNewRun();
@@ -36,17 +52,11 @@ public class RunManager : MonoBehaviour
     private void StartNewRun()
     {
         Debug.Log("Iniciando nova run!");
+        GameEvents.TriggerRunStarted();
         currentBiomeIndex = 0;
         roomsClearedInBiome = 0;
         hasLoadedMainRoom = false;
         LoadNextRoom();
-    }
-
-    public void PlayerReachedEndOfRoom()
-    {
-        Debug.Log("Jogador chegou ao final da sala. Carregando próxima...");
-        LoadNextRoom();
-        playerSpawner.ResetPosition();
     }
 
     private void LoadNextRoom()
@@ -84,9 +94,8 @@ public class RunManager : MonoBehaviour
 
             plataformSpawner.SpawnLayout(chosenRoom.layoutPrefab);
             roomsClearedInBiome++;
+            GameEvents.TriggerRoomLoaded();
         }
-        // TODO: Posicionar o jogador no ponto de início da nova sala
-        // playerSpawner.RespawnPlayerAtStartPoint();
     }
 
     // Você vai precisar de um método público no seu SRPlataformSpawner

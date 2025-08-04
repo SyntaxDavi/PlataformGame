@@ -37,7 +37,8 @@ public class RoomExit : MonoBehaviour
             if(InteractionCanvas != null) InteractionCanvas.SetActive(false);
 
             Debug.Log("E pressinado, notificando o runmangaer");
-            RunManager.Instance.PlayerReachedEndOfRoom();
+            GameEvents.TriggerPlayerReachedRoomExit();   
+
             playerInRange = false;
         }
     }
