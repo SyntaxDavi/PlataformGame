@@ -14,6 +14,7 @@ public class RunManager : MonoBehaviour
 
     private int currentBiomeIndex = 0;
     private int roomsClearedInBiome = 0;
+    private bool hasLoadedMainRoom = false;
     private List<RoomData> availableCombatRooms;
 
     private void Awake()
@@ -37,6 +38,7 @@ public class RunManager : MonoBehaviour
         Debug.Log("Iniciando nova run!");
         currentBiomeIndex = 0;
         roomsClearedInBiome = 0;
+        hasLoadedMainRoom = false;
         LoadNextRoom();
     }
 
@@ -50,6 +52,14 @@ public class RunManager : MonoBehaviour
     private void LoadNextRoom()
     {
         BiomeData currentBiome = biomeProgression[currentBiomeIndex];
+
+        if (!hasLoadedMainRoom)
+        {
+            Debug.Log("Carregando MainRoom");
+            plataformSpawner.SpawnLayout(currentBiome.mainRoom.layoutPrefab);
+            hasLoadedMainRoom= true;
+            return;
+        }
 
         // Lógica de decisão de qual sala carregar
         // TODO: Adicionar lógica para Loja e MiniBoss

@@ -12,6 +12,8 @@ public class BiomeData : ScriptableObject
     public List<RoomData> combatRooms;
 
     [Header("Salas Especiais")]
+    [Tooltip("Prefab da sala principal")]
+    public RoomData mainRoom;
     [Tooltip("Prefab da sala da loja aqui")]
     public RoomData ShopRoom;
     [Tooltip("O prefab da sala do MiniBoss.")]
