@@ -877,7 +877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeProgression:
   - {fileID: 11400000, guid: 0e6559888ac645a4e9e53c7281d0ce80, type: 2}
-  spawner: {fileID: 8233185208771278233}
+  playerSpawner: {fileID: 8233185208771278233}
   plataformSpawner: {fileID: 621217695}
 --- !u!4 &1203952072
 Transform:

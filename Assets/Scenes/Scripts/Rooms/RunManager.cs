@@ -9,7 +9,7 @@ public class RunManager : MonoBehaviour
     [Tooltip("Lista ORDENADA dos biomas do jogo")]
     [SerializeField] private List<BiomeData> biomeProgression;
 
-    [SerializeField] private PlayerSpawner spawner;
+    [SerializeField] private PlayerSpawner playerSpawner;
     [SerializeField] private SRPlataformSpawner plataformSpawner;
 
     private int currentBiomeIndex = 0;
@@ -45,8 +45,8 @@ public class RunManager : MonoBehaviour
     public void PlayerReachedEndOfRoom()
     {
         Debug.Log("Jogador chegou ao final da sala. Carregando próxima...");
-        roomsClearedInBiome++;
         LoadNextRoom();
+        playerSpawner.ResetPosition();
     }
 
     private void LoadNextRoom()
@@ -83,6 +83,7 @@ public class RunManager : MonoBehaviour
             availableCombatRooms.RemoveAt(randomIndex); //remove para nao repetir tãoo cedo
 
             plataformSpawner.SpawnLayout(chosenRoom.layoutPrefab);
+            roomsClearedInBiome++;
         }
         // TODO: Posicionar o jogador no ponto de início da nova sala
         // playerSpawner.RespawnPlayerAtStartPoint();
