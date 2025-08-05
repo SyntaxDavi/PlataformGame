@@ -74,7 +74,7 @@ public class RunManager : MonoBehaviour
         // Lógica de decisão de qual sala carregar
         // TODO: Adicionar lógica para Loja e MiniBoss
 
-        if(roomsClearedInBiome >= currentBiome.combatRoomsBeforeBoss)
+        if(roomsClearedInBiome > currentBiome.combatRoomsBeforeBoss)
         {
             //Sala do boss
             plataformSpawner.SpawnLayout(currentBiome.finalBossRoom.layoutPrefab);

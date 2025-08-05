@@ -25,22 +25,43 @@ public class AiController : MonoBehaviour
     {
         Rb = GetComponent<Rigidbody2D>();
         Stats = GetComponent<CharacterStats>();
-        BoxCollider = GetComponent<BoxCollider2D>();
-
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        if(Player != null)
-        {
-            PlayerTransform = Player.transform;
-        }       
+        BoxCollider = GetComponent<BoxCollider2D>();      
     }
 
     private void OnEnable()
     {
+        if(GameEvents.PlayerTransform != null)
+        {
+            PlayerTransform = GameEvents.PlayerTransform;
+        }
+
+        GameEvents.OnPlayerSpawned += HandlePlayerSpawned;
+        GameEvents.OnPlayerDeath += HandlePlayerDeath;
+
         TransitionToState(InitialState);
+    }
+
+    private void OnDisable()
+    {
+        // SEMPRE se desinscreve dos eventos para evitar memory leaks
+        GameEvents.OnPlayerSpawned -= HandlePlayerSpawned;
+        GameEvents.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerSpawned(Transform playerTransform)
+    {
+        PlayerTransform = playerTransform;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        PlayerTransform = null;
     }
 
     private void FixedUpdate()
     {
+        if( PlayerTransform == null ) { return; }
+
         if(CurrentState != null)
         {
             UpdateJumpPermission();

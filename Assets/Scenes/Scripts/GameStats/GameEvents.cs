@@ -20,8 +20,20 @@ public static class GameEvents
     public static void TriggerRoomLoaded() => OnRoomLoaded?.Invoke();
 
     // -- EVENTOS DO JOGADOR --
+    public static Transform PlayerTransform { get; private set; }
+    public static event Action<Transform> OnPlayerSpawned;
+    public static void TriggerPlayerSpawned(Transform playerTransform)
+    {
+        PlayerTransform = playerTransform;
+        OnPlayerSpawned?.Invoke(playerTransform);
+    }
+
     public static event Action OnPlayerDeath;
-    public static void TriggerPlayerDeath() => OnPlayerDeath?.Invoke();
+    public static void TriggerPlayerDeath()
+    {
+        PlayerTransform = null;
+        OnPlayerDeath?.Invoke();
+    }
 
     public static event Action<float, float> OnPlayerHealthChanged;
     public static void TriggerPlayerHealthChanged(float currentHealth, float maxHealth) => OnPlayerHealthChanged?.Invoke(currentHealth, maxHealth);

@@ -42,7 +42,6 @@ public class RoomExit : MonoBehaviour
             playerInRange = false;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -52,7 +51,6 @@ public class RoomExit : MonoBehaviour
             Debug.Log("Jogador entrou na area de saida, pressione E para continuar. ");
         }
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
