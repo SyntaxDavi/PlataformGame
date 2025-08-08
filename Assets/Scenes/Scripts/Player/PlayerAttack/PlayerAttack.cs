@@ -12,10 +12,12 @@ public class PlayerAttack : MonoBehaviour
     [Header("Referências")]
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerController controller;
+    [SerializeField] private Camera mainCamera;
 
     [SerializeField] private float DistanceOffset = 0f;
     public Weapons CurrentWeapon { get; private set; }
     public bool CanAttack { get; private set; } = true;
+    public Vector2 AimDirection { get; private set; }
 
     public float CurrentDamage => CurrentWeapon != null ? CurrentWeapon.WeaponDamage : baseDamage;
     public float CurrentBulletSpeed => CurrentWeapon != null ? CurrentWeapon.BulletSpeed : baseBulletSpeed;
@@ -25,6 +27,25 @@ public class PlayerAttack : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         controller = GetComponent<PlayerController>();
+
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+    }
+
+    private void Update()
+    {
+        HandleAiming();
+    }
+
+    public void HandleAiming()
+    {
+        Vector2 mouseScreenPosition = Input.mousePosition;
+
+        Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+
+        AimDirection = (mouseWorldPosition - (Vector2)transform.position).normalized;
     }
 
     public void HandleAttackInput()
@@ -45,11 +66,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletObject != null)
         {
-            Vector2 fireDirection = playerMovement.RawInputDirection;
-            if(fireDirection == Vector2.zero)
-            {
-                fireDirection = playerMovement.FacingDirection;
-            }
+            
+            Vector2 fireDirection = AimDirection;
 
             Vector3 spawnDirection = fireDirection;
             Vector3 SpawnOffset = spawnDirection * DistanceOffset;

@@ -74,7 +74,6 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeState(EPlayerState newState)
     {
-
         if(CurrentState == newState) { return; }
         Debug.Log($"Mudando de estado: {CurrentState} -> {newState}");
 
