@@ -113,6 +113,7 @@ public class AiController : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (BoxCollider == null) return;
@@ -132,5 +133,6 @@ public class AiController : MonoBehaviour
         Gizmos.DrawWireCube(origin + Vector2.down * (boxSize.y / 2 + extraHeight / 2), new Vector2(boxSize.x, extraHeight));
 
     }  //Debug
+#endif
 }
 

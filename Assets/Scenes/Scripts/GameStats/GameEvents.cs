@@ -41,4 +41,20 @@ public static class GameEvents
     // -- EVENTOS DE COMBATE --
     public static event Action<GameObject> OnEnemyDied;
     public static void TriggerEnemyDied(GameObject enemy) => OnEnemyDied?.Invoke(enemy);
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    public static void ClearAllEvents()
+    {
+        Debug.Log("Limpando todos os eventos estáticos do GameEvents");
+
+        OnRunStarted = null;
+        OnPlayerReachedRoomExit = null;
+        OnRoomLoaded = null;
+        OnPlayerSpawned = null;
+        OnPlayerDeath = null;
+        OnPlayerHealthChanged = null;
+        OnEnemyDied = null;
+
+        PlayerTransform = null;
+    }
 }
