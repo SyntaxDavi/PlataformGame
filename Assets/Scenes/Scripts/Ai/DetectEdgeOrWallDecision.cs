@@ -21,10 +21,6 @@ public class DetectEdgeOrWallDecision : AiDecision
     [Tooltip("Distância à frente para verificar se a plataforma é longa o suficiente para um pulo seguro.")]
     public float JumpSafetyDistance = 1.5f;
 
-    public abstract class AiDecision : ScriptableObject
-    {
-        public abstract bool Decide(AiController controller);
-    }
     public override bool Decide(AiController controller)
     {
         if (!controller.IsGrounded)

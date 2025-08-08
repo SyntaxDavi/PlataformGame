@@ -1,10 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerMovement : MonoBehaviour
 {
     //Referencias de componentes
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; 
+    private PlayerController playerController;
 
     //Configurações de Movimento
     [Header("Movimento")]
@@ -36,12 +38,14 @@ public class PlayerMovement : MonoBehaviour
     //Variaves de estado (privadas)
 
     private float horizontalInput;
-    private float verticalInput;
+    private bool jumpPressed;
+    private bool jumpHeld;
+
     private bool isFacingRight = true;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
     private bool isAttacking = false;
-    private bool hasJumped = false;
+    private PlayerController controller;
 
     //Propriedades públicas 
     public bool IsGrounded {  get; private set; }
@@ -51,80 +55,83 @@ public class PlayerMovement : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        controller = GetComponent<PlayerController>();
     }
-    private void Update()
-    {
-        HandleInput();
-        HandleTimers();
-        CheckIfGrounded();
-        FlipCharacter();
-    }
-    private void FixedUpdate()
-    {
-        HandleGravity();
-        HandleJump();
-        HandleMovement();
-    }
-    private void HandleInput()
+    public void HandleInputReading()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-        RawInputDirection = new Vector2(horizontalInput, verticalInput).normalized;
+        RawInputDirection = new Vector2(horizontalInput, Input.GetAxisRaw("Vertical")).normalized;
 
         // Buffer de pulo (pressionou pulo)
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             jumpBufferTimeCounter = jumpBufferTime;
         }
+    }
+    private void Update()
+    {
+        HandleTimers();
+        CheckIfGrounded();
+        FlipCharacter();
+    }
+    private void FixedUpdate()
+    {
+        HandleMovementInput();
+        ExecuteJump();
+        HandleGravity();
+    }
 
-        // Cortar pulo (soltou pulo)
+    public void ExecuteJump()
+    {
         if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space)) && rb.linearVelocity.y > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * JumpCutMultiplier);
         }
     }
+    public void HandleJumpInput()
+    {
+        if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
+            jumpBufferTimeCounter = 0f;
+            coyoteTimeCounter = 0f;
+            controller.ChangeState(EPlayerState.Jumping);
+        }
+    }
 
     private void HandleTimers()
     {
-        if (IsGrounded)
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
+        coyoteTimeCounter = IsGrounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
         jumpBufferTimeCounter -= Time.deltaTime;
     }
 
     private void CheckIfGrounded()
     {
+        bool WasGrounded = IsGrounded;
         RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, rayDistance, groundLayer);
-
-        //bool isOnWall = Physics2D.Raycast(transform.position, Vector2.right * direction, wallCheckDistance, groundLayer);
-
         IsGrounded = hit.collider != null;
 
-        if (IsGrounded)
+        if (!WasGrounded && IsGrounded)
         {
-            hasJumped = false;
+            controller.OnGrounded();
         }
     }
 
-    private void HandleMovement()
+    public void HandleMovementInput()
     {
         float currentSpeed = isAttacking ? attackingMoveSpeed : moveSpeed;
         rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
-    }
-    private void HandleJump()
-    {
-        if(jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && !hasJumped)
+
+        if(controller.CurrentState != EPlayerState.Jumping && controller.CurrentState != EPlayerState.Falling && IsGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
-            jumpBufferTimeCounter = 0f;
-            hasJumped = true;
+            if (Mathf.Abs(horizontalInput) > 0.1f)
+            {   
+                controller.ChangeState(EPlayerState.Moving);
+            }
+            else
+            {
+                controller.ChangeState(EPlayerState.Idle);
+            }
         }
     }
 
@@ -149,17 +156,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SetAttackingState(bool attacking)
+    public void SetAttackingMovement(bool attacking)
     {
         isAttacking = attacking;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * 0.1f);
-        }
     }
 }

@@ -7,20 +7,28 @@ public class PlayerHealthUI : MonoBehaviour
     public GameObject PrefabHealth;
 
     private List<GameObject> healthIcons = new List<GameObject>();
+    private bool isQuitting = false;
 
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
     private void OnEnable()
     {
         GameEvents.OnPlayerHealthChanged += UpdateHealthUI;
     }
     private void OnDisable()
     {
-        GameEvents.OnPlayerHealthChanged -= UpdateHealthUI;
+        if (!isQuitting)
+        {
+            GameEvents.OnPlayerHealthChanged -= UpdateHealthUI;
+        }
     }
 
     //Este método será chamado AUTOMATICAMENTE pelo evento.
     private void UpdateHealthUI(float currentHealth, float maxHealth)
     {
-        Debug.Log($"PlayerHealthUI ouviu o evento OnPlayerHealthChanged. Vida: {currentHealth}/{maxHealth}");
+        if (isQuitting) { return; }
 
         if (healthIcons.Count != (int)maxHealth)
         {

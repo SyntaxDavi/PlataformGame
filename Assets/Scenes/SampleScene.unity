@@ -1640,6 +1640,7 @@ MonoBehaviour:
   baseBulletSpeed: 10
   baseCoolDown: 1
   playerMovement: {fileID: 4403672672980721395}
+  controller: {fileID: 0}
   DistanceOffset: 0.7
 --- !u!1 &3867927641910499175
 GameObject:
@@ -1973,6 +1974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b3c2ce1f7d94647be542b95f070175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DashAbility: {fileID: 11400000, guid: d80989bc7a38322438c244412a7dc14f, type: 2}
+  PowerAbility: {fileID: 11400000, guid: d80989bc7a38322438c244412a7dc14f, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

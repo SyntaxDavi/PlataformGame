@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Configuração Padrão (Sem arma)")]
@@ -9,12 +11,11 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Referências")]
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerController controller;
 
     [SerializeField] private float DistanceOffset = 0f;
     public Weapons CurrentWeapon { get; private set; }
-    public bool IsPlayerAttacking { get; private set; }
-
-    private float CoolDownTimer = 0f;
+    public bool CanAttack { get; private set; } = true;
 
     public float CurrentDamage => CurrentWeapon != null ? CurrentWeapon.WeaponDamage : baseDamage;
     public float CurrentBulletSpeed => CurrentWeapon != null ? CurrentWeapon.BulletSpeed : baseBulletSpeed;
@@ -22,44 +23,24 @@ public class PlayerAttack : MonoBehaviour
 
     private void Awake()
     {
-        if (playerMovement != null)
+        playerMovement = GetComponent<PlayerMovement>();
+        controller = GetComponent<PlayerController>();
+    }
+
+    public void HandleAttackInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && CanAttack)
         {
-            playerMovement = GetComponent<PlayerMovement>();
+            controller.ChangeState(EPlayerState.Attacking);
         }
     }
 
-    private void Update()
+    public void ExecuteAttack()
     {
-        UpdateAttackCoolDown();
+        if(!CanAttack) { return; }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && CanAttack())
-        {
-            playerMovement.SetAttackingState(true);
-            Attack();
-        }
-    }
+        StartCoroutine(AttackCooldownRoutine());
 
-    private void UpdateAttackCoolDown()
-    {
-        if(CoolDownTimer > 0)
-        {
-            CoolDownTimer -= Time.deltaTime;
-
-            if(CoolDownTimer <= 0)
-            {
-                CoolDownTimer = 0f;
-                playerMovement.SetAttackingState(false);
-            }
-        }
-    }
-    private bool CanAttack()
-    {
-      return CoolDownTimer <= 0;
-    }
-
-    public void Attack()
-    {
-        CoolDownTimer = CurrentCoolDown;
         GameObject bulletObject = PoolSpawner.Instance.GetBullet(1);
 
         if (bulletObject != null)
@@ -76,12 +57,17 @@ public class PlayerAttack : MonoBehaviour
             bulletObject.transform.position = transform.position + SpawnOffset;
             bulletObject.SetActive(true);
 
-            PlayerBullet bulletScript = bulletObject.GetComponent<PlayerBullet>();
-            if (bulletScript != null)
+            if (bulletObject.TryGetComponent<PlayerBullet>(out PlayerBullet bulletScript))
             {
                 bulletScript.Setup(direction: spawnDirection, speed: CurrentBulletSpeed, damage: CurrentDamage);
             }
         }
+    }
+    private System.Collections.IEnumerator AttackCooldownRoutine()
+    {
+        CanAttack = false; // Impede o ataque
+        yield return new WaitForSeconds(CurrentCoolDown); // Espera o tempo do cooldown
+        CanAttack = true; // Permite o ataque novamente
     }
     public void SetWeapon(Weapons newWeapon)
     {
