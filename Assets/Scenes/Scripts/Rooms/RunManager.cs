@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class RunManager : MonoBehaviour
 {
     public static RunManager Instance { get; private set; }

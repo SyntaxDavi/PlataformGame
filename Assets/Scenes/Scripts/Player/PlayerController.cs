@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         if (lockedStateTimer > 0)
         {
             lockedStateTimer -= Time.deltaTime;
-
             if (lockedStateTimer <= 0)
             {
                 ChangeState(Movement.IsGrounded ? EPlayerState.Idle : EPlayerState.Falling);
@@ -48,19 +47,37 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (Movement.HasJumpBuffer && Movement.CanUseCoyoteTime)
+        {
+            ChangeState(EPlayerState.Jumping);
+            return;
+        }
+
         switch (CurrentState)
         {
             case EPlayerState.Idle:
             case EPlayerState.Moving:
-                Movement.HandleMovementInput();
-                Movement.HandleJumpInput();
+               
+                if(Mathf.Abs(Movement.RawInputDirection.x) > 0.1f)
+                {
+                    ChangeState(EPlayerState.Moving);
+                }
+                else
+                {
+                    ChangeState(EPlayerState.Idle);
+                }
+
+                if (!Movement.IsGrounded && Movement.Rigidbody.linearVelocity.y < -0.1f)
+                {
+                    ChangeState(EPlayerState.Falling);
+                }
+
                 Attack.HandleAttackInput();
                 if (!Movement.IsGrounded) ChangeState(EPlayerState.Falling);
                 break;
 
             case EPlayerState.Jumping:
             case EPlayerState.Falling:
-                Movement.HandleMovementInput();
                 Attack.HandleAttackInput();
                 break;
 
@@ -88,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case EPlayerState.Jumping:
-                Movement.HandleJumpInput();
+                Movement.ExecuteJump();
                 break;
 
             case EPlayerState.Falling:

@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float JumpCutMultiplier = 0.5f;
 
     [Header("Verificação de Chão(Ground check)")]
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.8f, 0.1f);
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float rayDistance = 1f;
@@ -40,62 +41,72 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private bool jumpPressed;
     private bool jumpHeld;
-
     private bool isFacingRight = true;
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
     private bool isAttacking = false;
-    private PlayerController controller;
 
     //Propriedades públicas 
+    public bool HasJumpBuffer => jumpBufferTimeCounter > 0f;
+    public bool CanUseCoyoteTime => coyoteTimeCounter > 0f;
     public bool IsGrounded {  get; private set; }
     public Vector2 RawInputDirection { get; private set; }
     public Vector2 FacingDirection => isFacingRight ? Vector2.right : Vector2.left;
+    public Rigidbody2D Rigidbody => rb;
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        controller = GetComponent<PlayerController>();
+        playerController = GetComponent<PlayerController>();
     }
     public void HandleInputReading()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         RawInputDirection = new Vector2(horizontalInput, Input.GetAxisRaw("Vertical")).normalized;
 
-        // Buffer de pulo (pressionou pulo)
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
-            jumpBufferTimeCounter = jumpBufferTime;
+            jumpPressed = true;
         }
+
+        jumpHeld = Input.GetButton("Jump");
     }
     private void Update()
     {
         HandleTimers();
         CheckIfGrounded();
         FlipCharacter();
+
+        if (jumpPressed)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+            jumpPressed = false;
+        }
     }
     private void FixedUpdate()
     {
-        HandleMovementInput();
-        ExecuteJump();
+        HandleMovementPhysics();
+        HandleJumpCut();
         HandleGravity();
+    }
+    private void HandleMovementPhysics()
+    {
+        float currentSpeed = isAttacking ? attackingMoveSpeed : moveSpeed;
+        rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
     }
 
     public void ExecuteJump()
     {
-        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space)) && rb.linearVelocity.y > 0)
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
+
+        jumpBufferTimeCounter = 0f;
+        coyoteTimeCounter = 0f;
+    }
+    public void HandleJumpCut()
+    {
+      if(!jumpHeld && rb.linearVelocity.y > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * JumpCutMultiplier);
-        }
-    }
-    public void HandleJumpInput()
-    {
-        if (coyoteTimeCounter > 0f && jumpBufferTimeCounter > 0f)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
-            jumpBufferTimeCounter = 0f;
-            coyoteTimeCounter = 0f;
-            controller.ChangeState(EPlayerState.Jumping);
         }
     }
 
@@ -108,43 +119,18 @@ public class PlayerMovement : MonoBehaviour
     private void CheckIfGrounded()
     {
         bool WasGrounded = IsGrounded;
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, rayDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(groundCheck.position, groundCheckSize,0f,Vector2.down, rayDistance, groundLayer);
         IsGrounded = hit.collider != null;
 
         if (!WasGrounded && IsGrounded)
         {
-            controller.OnGrounded();
-        }
-    }
-
-    public void HandleMovementInput()
-    {
-        float currentSpeed = isAttacking ? attackingMoveSpeed : moveSpeed;
-        rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
-
-        if(controller.CurrentState != EPlayerState.Jumping && controller.CurrentState != EPlayerState.Falling && IsGrounded)
-        {
-            if (Mathf.Abs(horizontalInput) > 0.1f)
-            {   
-                controller.ChangeState(EPlayerState.Moving);
-            }
-            else
-            {
-                controller.ChangeState(EPlayerState.Idle);
-            }
+            playerController.OnGrounded();
         }
     }
 
     private void HandleGravity()
     {
-        if(rb.linearVelocity.y < 0)
-        {
-            rb.gravityScale = FallGravityMultiplier;
-        }
-        else
-        {
-            rb.gravityScale = 1f;
-        }
+        rb.gravityScale = (rb.linearVelocity.y < 0) ? FallGravityMultiplier : 1f;
     }
 
     private void FlipCharacter()
@@ -159,5 +145,13 @@ public class PlayerMovement : MonoBehaviour
     public void SetAttackingMovement(bool attacking)
     {
         isAttacking = attacking;
+    }
+    private void OnDrawGizmos()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube((Vector2)groundCheck.position - Vector2.up * rayDistance, groundCheckSize);
+        }
     }
 }
