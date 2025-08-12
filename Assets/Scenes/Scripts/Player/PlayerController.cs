@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerHealth Health {  get; private set; }
     public PlayerMovement Movement { get; private set; }
     public PlayerAttack Attack { get; private set; }
+    private Animator animator;
 
     public EPlayerState CurrentState { get; private set; }
     private float lockedStateTimer;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         Health = GetComponent<PlayerHealth>();
         Movement = GetComponent<PlayerMovement>();
         Attack = GetComponent<PlayerAttack>();
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Mudando de estado: {CurrentState} -> {newState}");
 
         CurrentState = newState;
+        animator.SetInteger("State", (int)newState);
 
         Movement.SetAttackingMovement(false);
 

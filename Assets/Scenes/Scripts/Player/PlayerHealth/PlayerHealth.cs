@@ -34,7 +34,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("TriggerPlayeDeath Chamado");
             GameEvents.TriggerPlayerDeath();
-            gameObject.SetActive(false);
         }
     }
 }
