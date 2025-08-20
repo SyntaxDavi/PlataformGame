@@ -14836,6 +14836,8 @@ MonoBehaviour:
   Target: {fileID: 5246331565877623898}
   smoothSpeed: 0.2
   offset: {x: 0.29, y: 0.29, z: 0}
+  cameraSize: 8
+  zoomSmoothSpeed: 1
 --- !u!61 &8160110224793782601
 BoxCollider2D:
   m_ObjectHideFlags: 0

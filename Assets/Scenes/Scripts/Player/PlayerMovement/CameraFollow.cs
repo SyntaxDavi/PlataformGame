@@ -9,11 +9,22 @@ public class CameraFollow : MonoBehaviour
     [Header("Configurações")]
     [Tooltip("Quão suavemente a câmera vai seguir o alvo, valores menores são mais grudados")]
     public float smoothSpeed = 0.125f;
-
     [Tooltip("O deslocamento da câmera em relação ao alvo")]
     public Vector3 offset;
 
+    [Header("Configurações de Zoom")]
+    [Tooltip("O 'tamanho' da visão da câmera. Valores menores aproximam, valores maiores afastam.")]
+    public float cameraSize = 5f;
+    [Tooltip("Quão suavemente a câmera aplicará o zoom.")]
+    public float zoomSmoothSpeed = 1.0f;
+
     private Vector3 velocity = Vector3.zero;
+    private Camera cam;
+
+    private void Awake()
+    {
+        cam = GetComponent<Camera>();
+    }
 
     private void LateUpdate()
     {
@@ -26,5 +37,9 @@ public class CameraFollow : MonoBehaviour
         Vector3 smothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
 
         transform.position = smothedPosition;
+
+        //Zoom
+
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, cameraSize, zoomSmoothSpeed);
     }
 }
