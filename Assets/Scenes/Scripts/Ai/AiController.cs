@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D),typeof(CharacterStats), typeof(BoxCollider2D))]
 public class AiController : MonoBehaviour
 {
+    private static bool isHitStopActive = false;
+
     [Header("Configuração de Estados")]
     [Tooltip("O estado inicial da IA quando ela é ativada")]
     public AiState InitialState;
@@ -137,11 +139,23 @@ public class AiController : MonoBehaviour
 
     private IEnumerator HitStopCoroutine()
     {
-        if(HitStopDuration <= 0) { yield break; }
+        if(isHitStopActive || HitStopDuration <= 0) 
+        { 
+            yield break; 
+        }
+        isHitStopActive = true;
         float originalTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(HitStopDuration);
-        Time.timeScale = originalTimeScale;
+
+        try
+        {
+            Time.timeScale = 0f;
+            yield return new WaitForSecondsRealtime(HitStopDuration);
+        }
+        finally
+        {
+            Time.timeScale = originalTimeScale;
+            isHitStopActive = false;
+        }
     }
 
     private void UpdateJumpPermission()
