@@ -1,14 +1,22 @@
 using UnityEngine;
 using System.Collections.Generic;
+
+[System.Serializable]
+public class PoolConfig
+{
+    public PoolableType type;
+    public GameObject prefab;
+    public int size = 10;
+    public bool canExpand = true;
+}
+
 public class PoolSpawner : MonoBehaviour
 {
     public static PoolSpawner Instance;
 
-    public GameObject PrefabShot;
-
-    [SerializeField] private float PoolSize = 15f;
-
-    private readonly List<GameObject> BulletPool = new();
+    [Header("Pool Configurations")]
+    [SerializeField] private List<PoolConfig> poolConfigurations;
+    private Dictionary<PoolableType, Queue<GameObject>> pools;
 
     private void Awake()
     {
@@ -19,41 +27,55 @@ public class PoolSpawner : MonoBehaviour
         }
 
         Instance = this;
-
-        InstanciarPrefab(BulletPool, PrefabShot);
-
+        InitializePools();
+       
     }
-    private void InstanciarPrefab(List<GameObject> Pool, GameObject Prefab)
+    private void InitializePools()
     {
-        for (int i = 0; i < PoolSize; i++)
-        {
-            GameObject Obj = Instantiate(Prefab);
-            Obj.SetActive(false);
-            Pool.Add(Obj);
-        }
-    }
+        pools = new Dictionary<PoolableType, Queue<GameObject>>();
 
-    public GameObject GetBullet(int Type)
-    {
-        List<GameObject> Pool;
-
-        switch (Type)
+        foreach (var config in poolConfigurations) 
         {
-            case 1:
-                Pool = BulletPool;
-                break;
-            default:
-                Debug.LogWarning("Tipo de tiro inválido: " + Type);
-                return null;
-        }
-
-        foreach (GameObject bullet in Pool)
-        {
-            if (!bullet.activeInHierarchy)
+            Queue<GameObject> objectPool = new Queue<GameObject>();   
+            
+            for(int i = 0; i < config.size; i++)
             {
-                return bullet;
+                GameObject obj = Instantiate(config.prefab);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+
+            pools.Add(config.type, objectPool);
+        }
+    }
+
+    public GameObject GetFromPool(PoolableType type)
+    {
+        if (!pools.ContainsKey(type))
+        {
+            Debug.LogWarning($"Pool: '{type}' não existe");
+            return null;
+        }
+
+        GameObject objectToSpawn = pools[type].Dequeue();
+
+        if(objectToSpawn == null)
+        {
+            PoolConfig config = poolConfigurations.Find(c => c.type == type);
+            if(config != null && config.canExpand)
+            {
+                objectToSpawn = Instantiate(config.prefab);
+            }
+            else
+            {
+                pools[type].Enqueue(null);
+                Debug.LogWarning($"Pool: '{type}' esta vazia e não pode expandir");
+                return null;
             }
         }
-        return null;
+        pools[type].Enqueue(objectToSpawn);
+
+        objectToSpawn.SetActive(true);
+        return objectToSpawn;
     }
 }

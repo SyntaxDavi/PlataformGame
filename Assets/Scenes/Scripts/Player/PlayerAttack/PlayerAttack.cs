@@ -71,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
             CameraFollow.Instance.Shake(attackShakeDuration, attackShakeMagnitude);
         }
 
-        GameObject bulletObject = PoolSpawner.Instance.GetBullet(1);
+        GameObject bulletObject = PoolSpawner.Instance.GetFromPool(PoolableType.PlayerBullet);
 
         if (bulletObject != null)
         {

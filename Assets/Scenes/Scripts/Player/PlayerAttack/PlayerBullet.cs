@@ -21,7 +21,7 @@ public class PlayerBullet : MonoBehaviour
         lifeTimer += Time.deltaTime;
         if(lifeTimer >= timerAlive)
         {
-            gameObject.SetActive(false);
+            TriggerExplosion();
         }
     }
     public void Setup(float speed, float damage, Vector2 direction)
@@ -32,6 +32,8 @@ public class PlayerBullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player")) { return; }
+       
         if (collision.CompareTag("Inimigo"))
         {
             CharacterStats Enemy = collision.GetComponent<CharacterStats>();
@@ -40,17 +42,29 @@ public class PlayerBullet : MonoBehaviour
             {
                 Enemy.TakeDamage(bulletDamage);
             }
-            gameObject.SetActive(false);
+            TriggerExplosion();
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Debug.Log("Ground detectado");
-            gameObject.SetActive(false);
+            TriggerExplosion();
         }
-        else if (!collision.CompareTag("Player"))
+        else
         {
-            gameObject.SetActive(false);
+            TriggerExplosion();
         }
 
+    }
+    private void TriggerExplosion()
+    {
+        GameObject explosion = PoolSpawner.Instance.GetFromPool(PoolableType.BulletExplosion);
+
+        if (explosion != null)
+        {
+            explosion.transform.position = this.transform.position;
+            explosion.SetActive(true);
+        }
+
+        gameObject.SetActive(false);
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scenes\Scripts\Rooms\RunManager.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiController.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerState.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Player\PlayerAttack\TiroExplosionEffect.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerHealth\PlayerHealthUI.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AlwaysReturnTrue.cs" />
     <Compile Include="Assets\Scenes\Scripts\Plataform\PlataformLayout.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemySpawner.cs" />
     <Compile Include="Assets\Scenes\Scripts\GameStats\GameEvents.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerHealth\PlayerHealth.cs" />
+    <Compile Include="Assets\Scenes\Scripts\GameStats\PoolableType.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AIAction.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerAbilities\DashAbility.cs" />
     <Compile Include="Assets\Scenes\Scripts\GameStats\interactionController.cs" />

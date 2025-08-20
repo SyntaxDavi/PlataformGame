@@ -13668,8 +13668,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a7bd0377ec7f444ab38a2c461b94e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabShot: {fileID: 6422721521748116022, guid: d382214a3e083f04393202c29c4eb3ae, type: 3}
-  PoolSize: 15
+  poolConfigurations:
+  - type: 0
+    prefab: {fileID: 6422721521748116022, guid: d382214a3e083f04393202c29c4eb3ae, type: 3}
+    size: 50
+    canExpand: 1
+  - type: 2
+    prefab: {fileID: 5745914779985335698, guid: c9f2e60e30eb28b4aaca8669e5b3cc62, type: 3}
+    size: 50
+    canExpand: 1
 --- !u!4 &890217397
 Transform:
   m_ObjectHideFlags: 0
@@ -14570,9 +14577,9 @@ MonoBehaviour:
   playerMovement: {fileID: 4403672672980721395}
   controller: {fileID: 8799496802225107225}
   mainCamera: {fileID: 4621546732175784648}
-  DistanceOffset: 0.7
-  attackShakeDuration: 0.05
-  attackShakeMagnitude: 0.05
+  DistanceOffset: 0.2
+  attackShakeDuration: 0.03
+  attackShakeMagnitude: 0.03
 --- !u!1 &3867927641910499175
 GameObject:
   m_ObjectHideFlags: 0
