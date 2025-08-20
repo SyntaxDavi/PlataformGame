@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D),typeof(CharacterStats), typeof(BoxCollider2D))]
 public class AiController : MonoBehaviour
@@ -14,6 +15,11 @@ public class AiController : MonoBehaviour
     [Tooltip("Arraste aqui o asset de decisão que verifica bordas e segurança de pulo")]
     public DetectEdgeOrWallDecision SafetyDecision;
     public bool CanJump { get; set; } = true;
+
+    [Header("Seção de Knockback")]
+    public float knockbackForce = 5f;
+    public float knockbackDuration = 0.4f;
+    private bool isBeingKnockBack = false;
 
     public BoxCollider2D BoxCollider { get; private set; }  
     public Rigidbody2D Rb {  get; private set; }
@@ -37,7 +43,9 @@ public class AiController : MonoBehaviour
 
         GameEvents.OnPlayerSpawned += HandlePlayerSpawned;
         GameEvents.OnPlayerDeath += HandlePlayerDeath;
+        Stats.OnDamaged.AddListener(HandleDamageTaken);
 
+        isBeingKnockBack = false;
         TransitionToState(InitialState);
     }
 
@@ -46,6 +54,7 @@ public class AiController : MonoBehaviour
         // SEMPRE se desinscreve dos eventos para evitar memory leaks
         GameEvents.OnPlayerSpawned -= HandlePlayerSpawned;
         GameEvents.OnPlayerDeath -= HandlePlayerDeath;
+        Stats.OnDamaged.RemoveListener(HandleDamageTaken);
     }
 
     private void HandlePlayerSpawned(Transform playerTransform)
@@ -60,7 +69,7 @@ public class AiController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if( PlayerTransform == null ) { return; }
+        if( PlayerTransform == null || isBeingKnockBack) { return; }
 
         if(CurrentState != null)
         {
@@ -68,6 +77,34 @@ public class AiController : MonoBehaviour
             CurrentState.Execute(this);
             CurrentState.CheckTransistions(this);
         }
+    }
+
+    private void HandleDamageTaken()
+    {
+        if(PlayerTransform == null) { return; }
+
+        Vector2 knockbackDirection = (transform.position - PlayerTransform.position).normalized;
+        ApplyKnockback(knockbackDirection);
+    }
+
+    public void ApplyKnockback(Vector2 direction)
+    {
+        if (isBeingKnockBack) { return ; }
+
+        StartCoroutine(knockbackCoroutine(direction));
+    }
+
+    private IEnumerator knockbackCoroutine(Vector2 direction)
+    {
+        isBeingKnockBack = true;
+
+        Rb.linearVelocity = Vector2.zero;
+        Rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(knockbackDuration);
+        isBeingKnockBack = false;
+        
+        // Rb.linearVelocity = Vector2.zero;
     }
 
     private void UpdateJumpPermission()
