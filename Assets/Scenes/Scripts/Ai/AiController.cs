@@ -119,8 +119,9 @@ public class AiController : MonoBehaviour
         {
             float t = 1 - (timer / knockbackDuration);
             Rb.linearVelocity = Vector2.Lerp(Vector2.zero,initialVelocity, t);
-            timer += Time.deltaTime;
-            yield return null;
+            timer += Time.fixedDeltaTime;
+
+            yield return new WaitForFixedUpdate();
         }
 
         Rb.linearVelocity = Vector2.zero;

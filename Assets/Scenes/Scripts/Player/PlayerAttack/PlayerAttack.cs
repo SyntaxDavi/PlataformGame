@@ -13,8 +13,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerController controller;
     [SerializeField] private Camera mainCamera;
-
     [SerializeField] private float DistanceOffset = 0f;
+
+    [Header("Feedback Visual (Game Feel)")]
+    [SerializeField] private float attackShakeDuration = 0.1f;
+    [SerializeField] private float attackShakeMagnitude = 0.2f;
+
     public Weapons CurrentWeapon { get; private set; }
     public bool CanAttack { get; private set; } = true;
     public Vector2 AimDirection { get; private set; }
@@ -61,6 +65,11 @@ public class PlayerAttack : MonoBehaviour
         if(!CanAttack) { return; }
 
         StartCoroutine(AttackCooldownRoutine());
+
+        if(CameraFollow.Instance != null)
+        {
+            CameraFollow.Instance.Shake(attackShakeDuration, attackShakeMagnitude);
+        }
 
         GameObject bulletObject = PoolSpawner.Instance.GetBullet(1);
 

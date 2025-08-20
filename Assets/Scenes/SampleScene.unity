@@ -14571,6 +14571,8 @@ MonoBehaviour:
   controller: {fileID: 8799496802225107225}
   mainCamera: {fileID: 4621546732175784648}
   DistanceOffset: 0.7
+  attackShakeDuration: 0.05
+  attackShakeMagnitude: 0.05
 --- !u!1 &3867927641910499175
 GameObject:
   m_ObjectHideFlags: 0
@@ -14614,7 +14616,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   rayDistance: 0.05
-  coyoteTime: 1
+  coyoteTime: 0.1
   jumpBufferTime: 0.05
 --- !u!114 &4582491350816407260
 MonoBehaviour:
