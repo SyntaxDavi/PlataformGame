@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1432333238147285170}
   - component: {fileID: -7960059760715425874}
   - component: {fileID: 5141449519679288283}
-  - component: {fileID: 4889345374278289278}
   m_Layer: 7
   m_Name: Tiro
   m_TagString: Tiro
@@ -34,8 +33,7 @@ Transform:
   m_LocalPosition: {x: -5.3792, y: -1.6872, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2857560441975784145}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &657539611861136363
@@ -201,79 +199,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4889345374278289278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6422721521748116022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e71c603b6483e4ab8415efe196f458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashDuration: 2
---- !u!1001 &4023628397546367408
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7547662572140499067}
-    m_Modifications:
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.16967535
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.24580002
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7146235220436921412, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-      propertyPath: m_Name
-      value: TiroParticle
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
---- !u!4 &2857560441975784145 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1188621141300751201, guid: 20260da91e6d3e0459cd5cd8e7d0c9ff, type: 3}
-  m_PrefabInstance: {fileID: 4023628397546367408}
-  m_PrefabAsset: {fileID: 0}

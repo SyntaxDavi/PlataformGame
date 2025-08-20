@@ -181,16 +181,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387ae725cacf63438957ff5ee7bf9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackScript: {fileID: 0}
-  BaseSpeed: 8
-  JumpGravityScale: 1.5
-  FallGravityScale: 2.5
+  moveSpeed: 8
+  attackingMoveSpeed: 4
   JumpForce: 20
-  GroundCheckRadius: 0.1
-  GroundCheck: {fileID: 7616457431368204158}
-  GroundLayer:
+  FallGravityMultiplier: 2.5
+  JumpCutMultiplier: 0.5
+  groundCheckSize: {x: 0.8, y: 0.1}
+  groundCheck: {fileID: 0}
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
+  rayDistance: 1
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2
 --- !u!114 &6437468139617630754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +210,8 @@ MonoBehaviour:
   baseBulletSpeed: 10
   baseCoolDown: 1
   playerMovement: {fileID: 0}
+  controller: {fileID: 0}
+  mainCamera: {fileID: 0}
   DistanceOffset: 0
 --- !u!114 &4821864604278279629
 MonoBehaviour:
@@ -236,6 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b3c2ce1f7d94647be542b95f070175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DashAbility: {fileID: 0}
+  PowerAbility: {fileID: 0}
 --- !u!114 &1094609483779311240
 MonoBehaviour:
   m_ObjectHideFlags: 0
