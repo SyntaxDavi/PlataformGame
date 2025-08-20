@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff2841f668b50744b8bf4dc84321b53, type: 3}
   m_Name: Dust
   m_EditorClassIdentifier: 
-  MaxHealth: 20
+  MaxHealth: 300
   BaseSpeed: 3.5
   AttackDamage: 1
   AttackSpeed: 1

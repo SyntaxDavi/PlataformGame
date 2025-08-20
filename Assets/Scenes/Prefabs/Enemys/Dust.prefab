@@ -185,6 +185,9 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-5520822273433223883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +217,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   SafetyDecision: {fileID: 11400000, guid: a24d3c5135cf9ae4f9f46a3108992a3b, type: 2}
+  knockbackInitialForce: 15
+  knockbackDuration: 0.5
+  HitFlashColor: {r: 1, g: 1, b: 1, a: 1}
+  HitStopDuration: 0.05
   FacingDirection: 1
 --- !u!114 &591433399794738477
 MonoBehaviour:

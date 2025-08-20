@@ -16,11 +16,18 @@ public class AiController : MonoBehaviour
     public DetectEdgeOrWallDecision SafetyDecision;
     public bool CanJump { get; set; } = true;
 
-    [Header("Seção de Knockback")]
-    public float knockbackForce = 5f;
-    public float knockbackDuration = 0.4f;
-    private bool isBeingKnockBack = false;
+    [Header("Configuração de Impacto")]
+    [Tooltip("A força inicial do empurrão de knockback")]
+    public float knockbackInitialForce = 15f;
+    [Tooltip("Duração em segundos no knockback")]
+    public float knockbackDuration = 0.45f;
+    [Tooltip("A cor que o inimigo pisca ao tomar dano")]
+    public Color HitFlashColor = Color.white;
+    [Tooltip("A duração do congelamento do inimigo:")]
+    public float HitStopDuration = 0.05f;
 
+    private bool isBeingKnockBack = false;
+    private SpriteRenderer hitRenderer;
     public BoxCollider2D BoxCollider { get; private set; }  
     public Rigidbody2D Rb {  get; private set; }
     public CharacterStats Stats { get; private set; }
@@ -31,7 +38,8 @@ public class AiController : MonoBehaviour
     {
         Rb = GetComponent<Rigidbody2D>();
         Stats = GetComponent<CharacterStats>();
-        BoxCollider = GetComponent<BoxCollider2D>();      
+        BoxCollider = GetComponent<BoxCollider2D>();    
+        hitRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -83,6 +91,13 @@ public class AiController : MonoBehaviour
     {
         if(PlayerTransform == null) { return; }
 
+        StartCoroutine(HitStopCoroutine());
+
+        if(hitRenderer != null)
+        {
+            StartCoroutine(DamageFlashCoroutine());
+        }
+
         Vector2 knockbackDirection = (transform.position - PlayerTransform.position).normalized;
         ApplyKnockback(knockbackDirection);
     }
@@ -97,14 +112,35 @@ public class AiController : MonoBehaviour
     private IEnumerator knockbackCoroutine(Vector2 direction)
     {
         isBeingKnockBack = true;
+        float timer = 0;
+        Vector2 initialVelocity = direction * knockbackInitialForce;
+
+        while(timer < knockbackDuration)
+        {
+            float t = 1 - (timer / knockbackDuration);
+            Rb.linearVelocity = Vector2.Lerp(Vector2.zero,initialVelocity, t);
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
         Rb.linearVelocity = Vector2.zero;
-        Rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
-
-        yield return new WaitForSeconds(knockbackDuration);
         isBeingKnockBack = false;
-        
-        // Rb.linearVelocity = Vector2.zero;
+    }
+    private IEnumerator DamageFlashCoroutine()
+    {
+        Color originalColor = hitRenderer.color;
+        hitRenderer.color = HitFlashColor;
+        yield return new WaitForSeconds(0.08f);
+        hitRenderer.color = originalColor;
+    }
+
+    private IEnumerator HitStopCoroutine()
+    {
+        if(HitStopDuration <= 0) { yield break; }
+        float originalTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(HitStopDuration);
+        Time.timeScale = originalTimeScale;
     }
 
     private void UpdateJumpPermission()
