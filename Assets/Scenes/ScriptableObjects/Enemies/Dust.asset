@@ -15,5 +15,5 @@ MonoBehaviour:
   MaxHealth: 300
   BaseSpeed: 3.5
   AttackDamage: 1
-  AttackSpeed: 1
+  AttackSpeed: 2
   GoldToDrop: 10

@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     private CharacterStats characterStats;
+    private float lastAttackTime = 0f;
 
     private void Awake()
     {
@@ -16,21 +17,18 @@ public class EnemyAttack : MonoBehaviour
    
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.collider.GetComponent<PlayerHealth>();
-
-            if (playerHealth != null)
+            if (Time.time >= lastAttackTime + (1f / characterStats.StatSheet.AttackSpeed))
             {
-                if (characterStats != null && characterStats.StatSheet != null)
+                PlayerHealth playerHealth = collision.collider.GetComponent<PlayerHealth>();
+
+                if (playerHealth != null && characterStats != null && characterStats.StatSheet != null)
                 {
                     playerHealth.TakeDamage(characterStats.StatSheet.AttackDamage);
-                }
-                else
-                {
-                    Debug.LogWarning("Ataque do inimigo falhou. Verifique CharacterStats/StatSheet.", gameObject);
+                    lastAttackTime = Time.time; 
                 }
             }
         }
