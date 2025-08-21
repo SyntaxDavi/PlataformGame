@@ -7,20 +7,18 @@ public class BiomeData : ScriptableObject
     [Header("Identificação do Bioma")]
     public string biomeName;
 
-    [Header("Salas de Combate")]
+    [Header("Configurações de Salas de Combate")]
     [Tooltip("Lista de todas as salas de combate possíveis para este bioma.")]
     public List<RoomData> combatRooms;
 
-    [Header("Salas Especiais")]
-    [Tooltip("Prefab da sala principal")]
-    public RoomData mainRoom;
-    [Tooltip("Prefab da sala da loja aqui")]
-    public RoomData ShopRoom;
-    [Tooltip("O prefab da sala do MiniBoss.")]
-    public RoomData miniBossRoom;
+    [Tooltip("Salas de combate antes da Loja 1.")]
+    public int combatsBeforeShop1 = 3;
+    [Tooltip("Salas de combate entre o MiniBoss e a Loja 2.")]
+    public int combatsBeforeShop2 = 4;
 
-    [Header("Progresso")]
-    [Tooltip("Quantas salas de combate o jogador deve vencer antes do chefe final.")]
-    public int combatRoomsBeforeBoss = 10;
+    [Header("Salas Especiais")]
+    public RoomData mainRoom;
+    public RoomData shopRoom;
+    public RoomData miniBossRoom;
     public RoomData finalBossRoom;
 }

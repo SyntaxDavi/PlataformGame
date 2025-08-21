@@ -11,23 +11,29 @@ public class RoomExit : MonoBehaviour
     private bool playerInRange = false;
     private void Awake()
     {
-        if(InteractionCanvas != null)
+        if (InteractionCanvas != null)
         {
-            canvasComponent = InteractionCanvas.GetComponent<Canvas> ();
-            if(canvasComponent == null)
+            canvasComponent = InteractionCanvas.GetComponent<Canvas>();
+            if (canvasComponent == null)
             {
                 Debug.LogError("O GameObject de interação não tem um componente Canvas", this);
                 return;
             }
-        }
 
-        if(canvasComponent.renderMode == RenderMode.WorldSpace && canvasComponent == null)
+            // Se o Canvas for World Space, define a câmera principal
+            if (canvasComponent.renderMode == RenderMode.WorldSpace)
+            {
+                canvasComponent.worldCamera = Camera.main;
+            }
+
+            InteractionCanvas.SetActive(false);
+        }
+        else
         {
-            canvasComponent.worldCamera = Camera.main;
+            Debug.LogWarning("Nenhum InteractionCanvas foi atribuído ao RoomExit", this);
         }
-
-        InteractionCanvas.SetActive(false);
     }
+
     private void Update()
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))

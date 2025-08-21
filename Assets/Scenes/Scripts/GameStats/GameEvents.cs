@@ -10,6 +10,9 @@ public static class GameEvents
     public static event Action OnRunStarted;
     public static void TriggerRunStarted() => OnRunStarted?.Invoke();
 
+    public static event Action OnRunCompleted; 
+    public static void TriggerRunCompleted() => OnRunCompleted?.Invoke();
+
     // Evento disparado quando o jogador chega ao final de uma sala e interage.
     public static event Action OnPlayerReachedRoomExit;
     public static void TriggerPlayerReachedRoomExit() => OnPlayerReachedRoomExit?.Invoke();
@@ -50,6 +53,7 @@ public static class GameEvents
         OnRunStarted = null;
         OnPlayerReachedRoomExit = null;
         OnRoomLoaded = null;
+        OnRunCompleted = null;
         OnPlayerSpawned = null;
         OnPlayerDeath = null;
         OnPlayerHealthChanged = null;
