@@ -3,23 +3,27 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     public Vector3 StartPosition;
+    private Transform playerTransform;
 
+    private void Awake()
+    {
+        playerTransform = transform;
+    }
     private void Start()
     {
         ResetPosition();
-
-        Debug.Log("Jogador spawnou, disparando evento OnPlayerSpawned.");
-        GameEvents.TriggerPlayerSpawned(transform);
     }
 
     private void OnEnable()
     {
         GameEvents.OnRoomLoaded += OnRoomLoadedHandler;
+        GameEvents.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
         GameEvents.OnRoomLoaded -= OnRoomLoadedHandler;
+        GameEvents.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     private void OnRoomLoadedHandler()
@@ -27,9 +31,15 @@ public class PlayerSpawner : MonoBehaviour
         ResetPosition();
     }
 
+    private void HandlePlayerDeath()
+    {
+        Debug.Log("PlayerSpawner ouviu o evento de morte. Resetando posição.");
+        ResetPosition();
+    }
+
     public void ResetPosition()
     {
-        transform.position = StartPosition;
+        playerTransform.position = StartPosition;
         GameEvents.TriggerPlayerSpawned(transform);
     }
 }

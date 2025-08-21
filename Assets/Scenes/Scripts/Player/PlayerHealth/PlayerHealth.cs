@@ -5,10 +5,20 @@ public class PlayerHealth : MonoBehaviour
     public GameObject HealthBackground;
     public GameObject PrefabHealth;
 
-    public float MaxHealth;
+    public float MaxHealth = 100f;
     public float CurrentHealth;
 
     private bool isQuiting = false;
+
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= HandlePlayerDeath;
+    }
 
     private void OnApplicationQuit()
     {
@@ -24,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         if (isQuiting) { return; }
+        if (CurrentHealth <= 0) { return; }
 
         CurrentHealth -= Damage;
         CurrentHealth = Mathf.Max(0, CurrentHealth);
@@ -35,5 +46,11 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("TriggerPlayeDeath Chamado");
             GameEvents.TriggerPlayerDeath();
         }
+    }
+
+    private void HandlePlayerDeath()
+    {
+        CurrentHealth = MaxHealth;
+        GameEvents.TriggerPlayerHealthChanged(CurrentHealth, MaxHealth);
     }
 }
