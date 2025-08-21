@@ -14612,9 +14612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387ae725cacf63438957ff5ee7bf9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 6.5
   attackingMoveSpeed: 3
-  JumpForce: 17.5
+  JumpForce: 16
   FallGravityMultiplier: 5
   JumpCutMultiplier: 0.3
   groundCheckSize: {x: 0.8, y: 0.1}

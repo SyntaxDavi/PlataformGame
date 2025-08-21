@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: 287925097e35f4c4da101705b3aed24f
+guid: 7f3854ff5be5a6544a395b62b94699a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -477187523466974009
-    second: PersonagemPrincipalIdle-Sheet_0
+      213: 8944164482347578565
+    second: SheetIDle_0
   - first:
-      213: -713266942115744487
-    second: PersonagemPrincipalIdle-Sheet_1
+      213: -1217579583761842075
+    second: SheetIDle_1
   - first:
-      213: -4368525576137381939
-    second: PersonagemPrincipalIdle-Sheet_2
+      213: 4973574856781423655
+    second: SheetIDle_2
   - first:
-      213: -8929687934837108564
-    second: PersonagemPrincipalIdle-Sheet_3
+      213: -1865030961442998946
+    second: SheetIDle_3
   - first:
-      213: 4984796495667387982
-    second: PersonagemPrincipalIdle-Sheet_4
+      213: -4858726505258871918
+    second: SheetIDle_4
   - first:
-      213: -6456955768306470811
-    second: PersonagemPrincipalIdle-Sheet_5
-  - first:
-      213: -3565723238127911386
-    second: PersonagemPrincipalIdle-Sheet_6
+      213: 4744289425968004073
+    second: SheetIDle_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,7 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,155 +115,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_0
+      name: SheetIDle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 32
-        height: 40
+        width: 28
+        height: 39
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7cca084c970b069f0800000000000000
-      internalID: -477187523466974009
+      spriteID: 5c43efe553e002c70800000000000000
+      internalID: 8944164482347578565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_1
+      name: SheetIDle_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 0
-        width: 32
-        height: 40
+        width: 28
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9157925ce77f916f0800000000000000
-      internalID: -713266942115744487
+      spriteID: 5608b10d1d94a1fe0800000000000000
+      internalID: -1217579583761842075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_2
+      name: SheetIDle_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 67
         y: 0
-        width: 32
-        height: 40
+        width: 28
+        height: 38
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc76f1a4221ef53c0800000000000000
-      internalID: -4368525576137381939
+      spriteID: 724654a2bffa50540800000000000000
+      internalID: 4973574856781423655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_3
+      name: SheetIDle_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 100
         y: 0
-        width: 32
-        height: 40
+        width: 28
+        height: 37
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca051f08220631480800000000000000
-      internalID: -8929687934837108564
+      spriteID: e55b510d8341e16e0800000000000000
+      internalID: -1865030961442998946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_4
+      name: SheetIDle_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 133
         y: 0
-        width: 32
-        height: 40
+        width: 28
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4eddd1900e8d2540800000000000000
-      internalID: 4984796495667387982
+      spriteID: 29315417cf5529cb0800000000000000
+      internalID: -4858726505258871918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_5
+      name: SheetIDle_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 163
         y: 0
-        width: 32
-        height: 40
+        width: 28
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 560feab60f84466a0800000000000000
-      internalID: -6456955768306470811
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 0
-        width: 1
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fe99133afae66946ae316593cb7aa0f
-      internalID: -3565723238127911386
+      spriteID: 9ebf67ab81a17d140800000000000000
+      internalID: 4744289425968004073
       vertices: []
       indices: 
       edges: []
@@ -275,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc2314efbbe466a458ea4a6aa470614c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -283,19 +258,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":40.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
-      - key: SpriteEditor.SliceOnImport
-        value: False
-    nameFileIdTable:
-      PersonagemPrincipalIdle-Sheet_0: -477187523466974009
-      PersonagemPrincipalIdle-Sheet_1: -713266942115744487
-      PersonagemPrincipalIdle-Sheet_2: -4368525576137381939
-      PersonagemPrincipalIdle-Sheet_3: -8929687934837108564
-      PersonagemPrincipalIdle-Sheet_4: 4984796495667387982
-      PersonagemPrincipalIdle-Sheet_5: -6456955768306470811
-      PersonagemPrincipalIdle-Sheet_6: -3565723238127911386
+      entries: []
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
