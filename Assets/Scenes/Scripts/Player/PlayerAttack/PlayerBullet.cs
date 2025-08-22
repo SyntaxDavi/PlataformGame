@@ -36,12 +36,11 @@ public class PlayerBullet : MonoBehaviour
        
         if (collision.CompareTag("Inimigo"))
         {
-            CharacterStats Enemy = collision.GetComponent<CharacterStats>();
-
-            if (Enemy != null)
+            if(collision.TryGetComponent<CharacterStats>(out CharacterStats enemyStats))
             {
-                Enemy.TakeDamage(bulletDamage);
+                enemyStats.TakeDamage(bulletDamage, gameObject);
             }
+
             TriggerExplosion();
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

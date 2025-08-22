@@ -9,37 +9,36 @@ public class PlayerSpawner : MonoBehaviour
     {
         playerTransform = transform;
     }
-    private void Start()
-    {
-        ResetPosition();
-    }
 
     private void OnEnable()
     {
-        GameEvents.OnRoomLoaded += OnRoomLoadedHandler;
+        GameEvents.OnRoomLoaded += HandleRoomLoaded;
         GameEvents.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnRoomLoaded -= OnRoomLoadedHandler;
+        GameEvents.OnRoomLoaded -= HandleRoomLoaded;
         GameEvents.OnPlayerDeath -= HandlePlayerDeath;
     }
-
-    private void OnRoomLoadedHandler()
+    private void HandleRoomLoaded()
     {
+        Debug.Log("Nova sala carregada. Reposicionando o jogador.");
         ResetPosition();
     }
 
     private void HandlePlayerDeath()
     {
-        Debug.Log("PlayerSpawner ouviu o evento de morte. Resetando posição.");
+        Debug.Log("!! PlayerSpawner ouviu o evento de morte. Chamando ResetPosition...");
         ResetPosition();
     }
 
     public void ResetPosition()
     {
         playerTransform.position = StartPosition;
-        GameEvents.TriggerPlayerSpawned(transform);
+
+        Debug.Log($"<color=green>Jogador reposicionado em {StartPosition}. Disparando evento OnPlayerSpawned!</color>");
+
+        GameEvents.TriggerPlayerSpawned(playerTransform);
     }
 }

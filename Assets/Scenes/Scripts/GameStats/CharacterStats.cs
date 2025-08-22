@@ -17,6 +17,8 @@ public class CharacterStats : MonoBehaviour
     public UnityEvent OnDie;
     public UnityEvent OnDamaged;
 
+    public UnityEvent<GameObject> OnDamageWithSource;
+
     private void OnEnable()
     {
         Initialize();
@@ -36,7 +38,7 @@ public class CharacterStats : MonoBehaviour
         OnHeatlhChanged?.Invoke(CurrentHealth);
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(float Damage, GameObject damegeSource)
     {
         if (CurrentHealth <= 0) return;
 
@@ -46,6 +48,7 @@ public class CharacterStats : MonoBehaviour
         //Anuncia que a vida mudou
         OnHeatlhChanged.Invoke(CurrentHealth);
         OnDamaged?.Invoke();
+        OnDamageWithSource?.Invoke(damegeSource);
 
         if (CurrentHealth <= 0)
         {

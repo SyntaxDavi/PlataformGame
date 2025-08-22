@@ -4,16 +4,29 @@ using UnityEngine;
 public class PeriodicDecision : AiDecision
 {
     public float Interval = 3f;
-    private float Timer = 0;
 
     public override bool Decide(AiController controller)
     {
-        Timer += Time.deltaTime;
-        if(Timer >= Interval)
+        if (controller.PlayerTransform == null)
         {
-            Timer = 0;
-            return true;
+            return false;
         }
+        else
+        {
+            if (!controller.DecisionTimers.ContainsKey(this))
+            {
+                controller.DecisionTimers[this] = 0;
+            }
+
+            controller.DecisionTimers[this] += Time.deltaTime;
+
+            if (controller.DecisionTimers[this] >= Interval)
+            {
+                controller.DecisionTimers[this] = 0;
+                return true;
+            }
+        }
+
         return false;
     }
 }

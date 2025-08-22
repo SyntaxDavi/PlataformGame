@@ -13940,9 +13940,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1684766596}
   - component: {fileID: 1684766597}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14509,8 +14509,8 @@ Transform:
   m_GameObject: {fileID: 6460992767971240624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0005, y: -0.4957, z: 0}
-  m_LocalScale: {x: 0.6354703, y: 0.12370162, z: 1}
+  m_LocalPosition: {x: 0.0456, y: -0.4855, z: 0}
+  m_LocalScale: {x: 0.43192914, y: 0.06835749, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5246331565877623898}
@@ -14572,7 +14572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 5
-  baseBulletSpeed: 10
+  baseBulletSpeed: 20
   baseCoolDown: 1
   playerMovement: {fileID: 4403672672980721395}
   controller: {fileID: 8799496802225107225}
@@ -14612,12 +14612,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387ae725cacf63438957ff5ee7bf9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6.5
+  moveSpeed: 7.8
   attackingMoveSpeed: 3
   JumpForce: 16
   FallGravityMultiplier: 5
   JumpCutMultiplier: 0.3
-  groundCheckSize: {x: 0.8, y: 0.1}
+  groundCheckSize: {x: 0.7, y: 0.1}
   groundCheck: {fileID: 1495727771570834543}
   groundLayer:
     serializedVersion: 2
@@ -14702,7 +14702,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -67.50855, y: -2.6482642, z: 0}
-  m_LocalScale: {x: 1.1818837, y: 1.3728375, z: 1}
+  m_LocalScale: {x: 2.1, y: 2.32, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1495727771570834543}
@@ -14773,7 +14773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1495727771570834543}
   - component: {fileID: 376025733597503061}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14815,7 +14815,7 @@ GameObject:
   - component: {fileID: 8799496802225107227}
   - component: {fileID: 8799496802225107226}
   - component: {fileID: 8799496802225107228}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -14881,17 +14881,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.028975964, y: -0.025255501}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.25}
+    oldSize: {x: 0.8, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.49563456, y: 0.949489}
   m_EdgeRadius: 0
 --- !u!114 &8233185208771278233
 MonoBehaviour:

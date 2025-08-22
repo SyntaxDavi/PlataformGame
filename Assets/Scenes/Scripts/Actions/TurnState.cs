@@ -7,12 +7,11 @@ public class TurnState : AiState
     {
         controller.Rb.linearVelocity = Vector2.zero;
         controller.Flip();
-
-        CheckTransistions(controller);
     }
 
     public override void Execute(AiController controller)
     {
-            
+
+        CheckTransistions(controller);
     }
 }

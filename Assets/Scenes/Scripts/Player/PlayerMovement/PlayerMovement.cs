@@ -130,9 +130,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleGravity()
     {
-        rb.gravityScale = (rb.linearVelocity.y < 0) ? FallGravityMultiplier : 1f;
+       rb.gravityScale = (rb.linearVelocity.y < 0) ? FallGravityMultiplier : 1f;
     }
-
     private void FlipCharacter()
     {
         if((isFacingRight && horizontalInput < 0) || (!isFacingRight && horizontalInput > 0))
@@ -150,8 +149,34 @@ public class PlayerMovement : MonoBehaviour
     {
         if (groundCheck != null)
         {
+            Gizmos.color = Color.yellow;
+            // Centro da caixa "esticada" no cast
+            Vector3 boxCenter = (Vector2)groundCheck.position + Vector2.down * rayDistance * 0.5f;
+            // Tamanho real (inclui a descida do rayDistance)
+            Vector3 boxSize = new Vector3(groundCheckSize.x, groundCheckSize.y + rayDistance, 0f);
+
+            // Desenha o volume do BoxCast
+            Gizmos.DrawWireCube(boxCenter, boxSize);
+
+            // Se quiser desenhar também o ponto de origem em vermelho
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube((Vector2)groundCheck.position - Vector2.up * rayDistance, groundCheckSize);
+            Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+
+            // Se quiser visualizar a colisão em tempo real
+            RaycastHit2D hit = Physics2D.BoxCast(
+                groundCheck.position,
+                groundCheckSize,
+                0f,
+                Vector2.down,
+                rayDistance,
+                groundLayer
+            );
+            if (hit.collider != null)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(hit.point, 0.1f); // marca exatamente onde encostou
+            }
         }
     }
+
 }
