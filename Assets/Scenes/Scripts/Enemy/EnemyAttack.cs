@@ -14,7 +14,6 @@ public class EnemyAttack : MonoBehaviour
             Debug.Log("CharacterStats null");
             return;
         }
-   
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -27,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
 
                 if (playerHealth != null && characterStats != null && characterStats.StatSheet != null)
                 {
-                    playerHealth.TakeDamage(characterStats.StatSheet.AttackDamage);
+                    playerHealth.TakeDamage(characterStats.StatSheet.AttackDamage, transform);
                     lastAttackTime = Time.time; 
                 }
             }

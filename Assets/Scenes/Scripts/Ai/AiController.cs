@@ -35,6 +35,7 @@ public class AiController : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
     public CharacterStats Stats { get; private set; }
     public Transform PlayerTransform { get; private set; }
+    public EnemyAnimator EnemyAnimator { get; private set; }
 
     public Dictionary<AiDecision, float> DecisionTimers = new Dictionary<AiDecision, float>();
 
@@ -45,6 +46,7 @@ public class AiController : MonoBehaviour
         Stats = GetComponent<CharacterStats>();
         BoxCollider = GetComponent<BoxCollider2D>();
         hitRenderer = GetComponentInChildren<SpriteRenderer>();
+        EnemyAnimator = GetComponent<EnemyAnimator>();
     }
 
     private void OnEnable()
@@ -56,6 +58,7 @@ public class AiController : MonoBehaviour
 
         GameEvents.OnPlayerSpawned += HandlePlayerSpawned;
         GameEvents.OnPlayerDeath += HandlePlayerDeath;
+        Stats.OnDie.AddListener(HandleDeath);
 
         if (Stats != null)
         {
@@ -71,6 +74,7 @@ public class AiController : MonoBehaviour
         // SEMPRE se desinscreve dos eventos para evitar memory leaks
         GameEvents.OnPlayerSpawned -= HandlePlayerSpawned;
         GameEvents.OnPlayerDeath -= HandlePlayerDeath;
+        Stats.OnDie.RemoveListener(HandleDeath);
 
         if (Stats != null)
         {
@@ -95,6 +99,12 @@ public class AiController : MonoBehaviour
     {
         if (isBeingKnockBack) { return; }
 
+        if(EnemyAnimator != null)
+        {
+            EnemyAnimator.SetGrounded(IsGrounded);
+            EnemyAnimator.UpdateYVelocity(Rb.linearVelocity.y);
+        }
+
         if (CurrentState != null)
         {
             UpdateJumpPermission();
@@ -106,6 +116,7 @@ public class AiController : MonoBehaviour
     // ESTE É O ÚNICO MÉTODO HandleDamageTaken QUE DEVE EXISTIR
     private void HandleDamageTaken(GameObject damageSource)
     {
+        EnemyAnimator?.TriggerHurt();
         StartCoroutine(HitStopCoroutine());
 
         if (hitRenderer != null)
@@ -210,6 +221,14 @@ public class AiController : MonoBehaviour
             RaycastHit2D Hit = Physics2D.BoxCast(Origin, BoxSize, 0f, Vector2.down, ExtraHeight, GroundLayer);
             return Hit.collider != null;
         }
+    }
+
+    private void HandleDeath()
+    {
+        EnemyAnimator?.TriggerDeath();
+
+        this.enabled = false;
+        Rb.linearVelocity = Vector2.zero;
     }
 
 #if UNITY_EDITOR

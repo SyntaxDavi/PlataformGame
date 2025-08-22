@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
@@ -45,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter;
     private float jumpBufferTimeCounter;
     private bool isAttacking = false;
+    private bool canMove = true;
+    private Coroutine knockbackCoroutine;
 
     //Propriedades públicas 
     public bool HasJumpBuffer => jumpBufferTimeCounter > 0f;
@@ -85,14 +88,37 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!canMove) { return; }
         HandleMovementPhysics();
         HandleJumpCut();
         HandleGravity();
+    }
+    public void ApplyKnockback(Vector2 direction, float force, float duration)
+    {
+        if(knockbackCoroutine != null)
+        {
+            StopCoroutine(knockbackCoroutine);
+        }
+        knockbackCoroutine = StartCoroutine(KnockbackCoroutine(direction, force, duration));
     }
     private void HandleMovementPhysics()
     {
         float currentSpeed = isAttacking ? attackingMoveSpeed : moveSpeed;
         rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
+    }
+
+    private IEnumerator KnockbackCoroutine(Vector2 direction, float force, float duration)
+    {
+        canMove = false;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
+        rb.gravityScale = 1.5f;
+
+        yield return new WaitForSeconds(duration);
+
+        canMove = true;
+        knockbackCoroutine = null;
     }
 
     public void ExecuteJump()

@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scenes\Scripts\Rooms\BiomeData.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\AiDecision.cs" />
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyDeathHandler.cs" />
+    <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyAnimator.cs" />
     <Compile Include="Assets\Scenes\Scripts\Player\PlayerAttack\PlayerAbility.cs" />
     <Compile Include="Assets\Scenes\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scenes\Scripts\Ai\DetectEdgeOrWallDecision.cs" />

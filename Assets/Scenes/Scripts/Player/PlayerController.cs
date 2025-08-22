@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ChangeState(EPlayerState newState)
+    public void ChangeState(EPlayerState newState, float stateLockDuration = 0f)
     {
         if(CurrentState == newState) { return; }
         Debug.Log($"Mudando de estado: {CurrentState} -> {newState}");
@@ -121,8 +121,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case EPlayerState.Hurt:
-                lockedStateTimer = 0.5f;
-                // Health.applyKnockback
+                lockedStateTimer = stateLockDuration;
                 break;
 
             case EPlayerState.Dead:
