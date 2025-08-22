@@ -14509,8 +14509,8 @@ Transform:
   m_GameObject: {fileID: 6460992767971240624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0341, y: -0.486, z: 0}
-  m_LocalScale: {x: 0.8331763, y: 0.069225624, z: 1}
+  m_LocalPosition: {x: -0.0064, y: -0.486, z: 0}
+  m_LocalScale: {x: 0.46518415, y: 0.069225624, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5246331565877623898}
@@ -14614,10 +14614,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7.8
   attackingMoveSpeed: 3
-  JumpForce: 16
+  JumpForce: 16.5
   FallGravityMultiplier: 5
   JumpCutMultiplier: 0.3
-  groundCheckSize: {x: 0.9, y: 0.1}
+  groundCheckSize: {x: 0.8, y: 0.1}
   groundCheck: {fileID: 1495727771570834543}
   groundLayer:
     serializedVersion: 2

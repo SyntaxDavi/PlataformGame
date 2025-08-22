@@ -1,28 +1,16 @@
 fileFormatVersion: 2
-guid: 287925097e35f4c4da101705b3aed24f
+guid: 57a198c3a9409f84d9934b08f5a993da
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -477187523466974009
-    second: PersonagemPrincipalIdle-Sheet_0
+      213: 8474821788067094099
+    second: PlayerFalling-Sheet_0
   - first:
-      213: -713266942115744487
-    second: PersonagemPrincipalIdle-Sheet_1
+      213: -4692993463873952836
+    second: PlayerFalling-Sheet_1
   - first:
-      213: -4368525576137381939
-    second: PersonagemPrincipalIdle-Sheet_2
-  - first:
-      213: -8929687934837108564
-    second: PersonagemPrincipalIdle-Sheet_3
-  - first:
-      213: 4984796495667387982
-    second: PersonagemPrincipalIdle-Sheet_4
-  - first:
-      213: -6456955768306470811
-    second: PersonagemPrincipalIdle-Sheet_5
-  - first:
-      213: -3565723238127911386
-    second: PersonagemPrincipalIdle-Sheet_6
+      213: -3332593300921627014
+    second: PlayerFalling-Sheet_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_0
+      name: PlayerFalling-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,21 +114,21 @@ TextureImporter:
         width: 32
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7cca084c970b069f0800000000000000
-      internalID: -477187523466974009
+      spriteID: 35eda74c38d9c9570800000000000000
+      internalID: 8474821788067094099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_1
+      name: PlayerFalling-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -148,21 +136,21 @@ TextureImporter:
         width: 32
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9157925ce77f916f0800000000000000
-      internalID: -713266942115744487
+      spriteID: cb320942f432fdeb0800000000000000
+      internalID: -4692993463873952836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_2
+      name: PlayerFalling-Sheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -170,103 +158,15 @@ TextureImporter:
         width: 32
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc76f1a4221ef53c0800000000000000
-      internalID: -4368525576137381939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 28
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca051f08220631480800000000000000
-      internalID: -8929687934837108564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 0
-        width: 1
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4eddd1900e8d2540800000000000000
-      internalID: 4984796495667387982
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 0
-        width: 1
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 560feab60f84466a0800000000000000
-      internalID: -6456955768306470811
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PersonagemPrincipalIdle-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 0
-        width: 1
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fe99133afae66946ae316593cb7aa0f
-      internalID: -3565723238127911386
+      spriteID: a7e48b5bc0040c1d0800000000000000
+      internalID: -3332593300921627014
       vertices: []
       indices: 
       edges: []
@@ -275,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc2314efbbe466a458ea4a6aa470614c
+    spriteID: 6510130299344144cbe452ccee6f6f23
     internalID: 0
     vertices: []
     indices: 
@@ -286,16 +186,10 @@ TextureImporter:
       entries:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":40.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
-      - key: SpriteEditor.SliceOnImport
-        value: False
     nameFileIdTable:
-      PersonagemPrincipalIdle-Sheet_0: -477187523466974009
-      PersonagemPrincipalIdle-Sheet_1: -713266942115744487
-      PersonagemPrincipalIdle-Sheet_2: -4368525576137381939
-      PersonagemPrincipalIdle-Sheet_3: -8929687934837108564
-      PersonagemPrincipalIdle-Sheet_4: 4984796495667387982
-      PersonagemPrincipalIdle-Sheet_5: -6456955768306470811
-      PersonagemPrincipalIdle-Sheet_6: -3565723238127911386
+      PlayerFalling-Sheet_0: 8474821788067094099
+      PlayerFalling-Sheet_1: -4692993463873952836
+      PlayerFalling-Sheet_2: -3332593300921627014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

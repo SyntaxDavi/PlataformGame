@@ -67,6 +67,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if(!Movement.IsGrounded && Movement.Rigidbody.linearVelocity.y < -0.1f)
+        {
+            ChangeState(EPlayerState.Falling);
+        }
+
+
         switch (CurrentState)
         {
             case EPlayerState.Idle:
@@ -79,11 +85,6 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     ChangeState(EPlayerState.Idle);
-                }
-
-                if (!Movement.IsGrounded && Movement.Rigidbody.linearVelocity.y < -0.1f)
-                {
-                    ChangeState(EPlayerState.Falling);
                 }
 
                 Attack.HandleAttackInput();
@@ -143,8 +144,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnGrounded()
     {
-        if (CurrentState == EPlayerState.Jumping || CurrentState == EPlayerState.Falling)
-        {
+        if(CurrentState == EPlayerState.Jumping || CurrentState == EPlayerState.Falling)
+    {
+            animator.SetTrigger("Land");
+
             ChangeState(EPlayerState.Idle);
         }
     }

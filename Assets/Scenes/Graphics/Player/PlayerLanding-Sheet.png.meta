@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 9a693ca760cc2e04bab85754cc11231e
+guid: d5e29bb92cfa76f4b80517d15e0c1eaf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5170051639564014732
-    second: SheetWalking_0
+      213: 5446015346959404984
+    second: PlayerLanding-Sheet_0
   - first:
-      213: 4560080959902024605
-    second: SheetWalking_1
-  - first:
-      213: -9043974416319042607
-    second: SheetWalking_2
-  - first:
-      213: 7889020603239147294
-    second: SheetWalking_3
+      213: 4796326000495747436
+    second: PlayerLanding-Sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SheetWalking_0
+      name: PlayerLanding-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8493a6f296bfb740800000000000000
-      internalID: 5170051639564014732
+      spriteID: 8bf47d49a12249b40800000000000000
+      internalID: 5446015346959404984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SheetWalking_1
+      name: PlayerLanding-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -146,52 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d938bf10979a84f30800000000000000
-      internalID: 4560080959902024605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SheetWalking_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1db25957f295d7280800000000000000
-      internalID: -9043974416319042607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SheetWalking_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e17aec9d07e6b7d60800000000000000
-      internalID: 7889020603239147294
+      spriteID: c61e48ed519ff8240800000000000000
+      internalID: 4796326000495747436
       vertices: []
       indices: 
       edges: []
@@ -200,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ee0993c8aaf827f4192255f3972d6f22
+    spriteID: 087007d07a6dfd34b9892ad6510de162
     internalID: 0
     vertices: []
     indices: 
@@ -212,10 +162,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":40.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      SheetWalking_0: 5170051639564014732
-      SheetWalking_1: 4560080959902024605
-      SheetWalking_2: -9043974416319042607
-      SheetWalking_3: 7889020603239147294
+      PlayerLanding-Sheet_0: 5446015346959404984
+      PlayerLanding-Sheet_1: 4796326000495747436
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
