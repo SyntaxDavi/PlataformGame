@@ -22,6 +22,9 @@ public static class GameEvents
     public static event Action OnRoomLoaded;
     public static void TriggerRoomLoaded() => OnRoomLoaded?.Invoke();
 
+    public static event Action OnRespawnCycleStarted;
+    public static void TriggerRespawnCycleStarted() => OnRespawnCycleStarted?.Invoke();
+
     // -- EVENTOS DO JOGADOR --
     public static Transform PlayerTransform { get; private set; }
     public static event Action<Transform> OnPlayerSpawned;
@@ -58,6 +61,7 @@ public static class GameEvents
         OnPlayerDeath = null;
         OnPlayerHealthChanged = null;
         OnEnemyDied = null;
+        OnRespawnCycleStarted = null;
 
         PlayerTransform = null;
     }

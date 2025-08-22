@@ -58,6 +58,7 @@ public class AiController : MonoBehaviour
 
         GameEvents.OnPlayerSpawned += HandlePlayerSpawned;
         GameEvents.OnPlayerDeath += HandlePlayerDeath;
+        GameEvents.OnRespawnCycleStarted += HandleRespawnCycleStarted;
         Stats.OnDie.AddListener(HandleDeath);
 
         if (Stats != null)
@@ -74,6 +75,7 @@ public class AiController : MonoBehaviour
         // SEMPRE se desinscreve dos eventos para evitar memory leaks
         GameEvents.OnPlayerSpawned -= HandlePlayerSpawned;
         GameEvents.OnPlayerDeath -= HandlePlayerDeath;
+        GameEvents.OnRespawnCycleStarted -= HandleRespawnCycleStarted;
         Stats.OnDie.RemoveListener(HandleDeath);
 
         if (Stats != null)
@@ -92,12 +94,20 @@ public class AiController : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} perdeu o alvo (Player morreu).");
         PlayerTransform = null;
-        TransitionToState(InitialState);
     }
 
     private void FixedUpdate()
     {
-        if (isBeingKnockBack) { return; }
+        if (PlayerTransform == null) 
+        {
+            Rb.linearVelocity = Vector2.zero;
+            return; 
+        }
+
+        if (isBeingKnockBack)
+        {
+            return;
+        }
 
         if(EnemyAnimator != null)
         {
@@ -110,6 +120,17 @@ public class AiController : MonoBehaviour
             UpdateJumpPermission();
             CurrentState.Execute(this);
             CurrentState.CheckTransistions(this);
+        }
+    }
+
+    private void HandleRespawnCycleStarted()
+    {
+        PlayerTransform = null;
+        isBeingKnockBack = false;
+
+        if(InitialState != null)
+        {
+            TransitionToState(InitialState);
         }
     }
 

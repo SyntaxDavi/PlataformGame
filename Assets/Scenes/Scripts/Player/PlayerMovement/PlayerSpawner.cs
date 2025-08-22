@@ -13,23 +13,15 @@ public class PlayerSpawner : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnRoomLoaded += HandleRoomLoaded;
-        GameEvents.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
         GameEvents.OnRoomLoaded -= HandleRoomLoaded;
-        GameEvents.OnPlayerDeath -= HandlePlayerDeath;
     }
     private void HandleRoomLoaded()
     {
         Debug.Log("Nova sala carregada. Reposicionando o jogador.");
-        ResetPosition();
-    }
-
-    private void HandlePlayerDeath()
-    {
-        Debug.Log("!! PlayerSpawner ouviu o evento de morte. Chamando ResetPosition...");
         ResetPosition();
     }
 

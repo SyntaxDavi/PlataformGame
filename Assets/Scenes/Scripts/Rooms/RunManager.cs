@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 enum BiomePhase
 {
     MainRoom,
@@ -61,21 +62,40 @@ public class RunManager : MonoBehaviour
 
     private void HandlePlayerDeath()
     {
-        Debug.Log("RunManager detectou a morte do jogador. Reiniciando a run...");
-        StartNewRun();
+        Debug.Log("RunManager detectou a morte do jogador. Iniciando sequência de respawn...");
+        StartCoroutine(RespawnSequenceCoroutine());
     }
-    private void Start()
+    private IEnumerator RespawnSequenceCoroutine()
     {
-        StartNewRun();
-    }
-    private void StartNewRun()
-    {
-        Debug.Log("Iniciando nova run!");
+        GameEvents.TriggerRespawnCycleStarted();
+        yield return new WaitForSeconds(0.3f);
+
+        Debug.Log("<Iniciando nova run>");
         currentBiomeIndex = 0;
         roomsClearedInBiome = 0;
         currentPhase = BiomePhase.MainRoom;
 
         if(availableCombatRooms != null)
+        {
+            availableCombatRooms.Clear();
+        }
+
+        GameEvents.TriggerRunStarted();
+        LoadNextRoom();
+    }
+    private void Start()
+    {
+        StartCoroutine(StartNewRunSequence());
+    }
+    private IEnumerator StartNewRunSequence()
+    {
+        yield return null; 
+        Debug.Log("Iniciando nova run!");
+        currentBiomeIndex = 0;
+        roomsClearedInBiome = 0;
+        currentPhase = BiomePhase.MainRoom;
+
+        if (availableCombatRooms != null)
         {
             availableCombatRooms.Clear();
         }

@@ -24,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     private readonly Queue<GameObject> EnemyPool = new();
     private readonly List<Transform> SpawnPoints = new();
+    private readonly List<GameObject> activeEnemies = new();
     private bool IsInitialized = false;
 
     private void Awake()
@@ -95,17 +96,29 @@ public class EnemySpawner : MonoBehaviour
             // Pega o primeiro inimigo disponível da fila
             GameObject EnemyToSpawn = EnemyPool.Dequeue();
 
-            if (EnemyToSpawn == null) return;
+            if (EnemyToSpawn == null) continue;
 
             EnemyToSpawn.transform.position = SpawnPoints[i].position;
             EnemyToSpawn.transform.rotation = SpawnPoints[i].rotation;
             EnemyToSpawn.SetActive(true);
 
+            activeEnemies.Add(EnemyToSpawn);
         }
     }
     public void ReturnToPool(GameObject Enemy)
     {
+        activeEnemies.Remove(Enemy);
+
         Enemy.SetActive(false);
         EnemyPool.Enqueue(Enemy);
+    }
+    public void DeactivateAndReturnAllEnemies()
+    {
+        for (int i = activeEnemies.Count -1; i >= 0; i--)
+        {
+            ReturnToPool(activeEnemies[i]);
+        }
+
+        activeEnemies.Clear();
     }
 }

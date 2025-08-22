@@ -22,6 +22,11 @@ public class SRPlataformSpawner : MonoBehaviour
 
     public void SpawnLayout(GameObject layoutPrefab)
     {
+        if(enemySpawner != null)
+        {
+            enemySpawner.DeactivateAndReturnAllEnemies();
+        }
+
         if (CurrentLayoutInstance != null)
         {
             Destroy(CurrentLayoutInstance);
