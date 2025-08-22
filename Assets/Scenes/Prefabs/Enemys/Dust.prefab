@@ -188,6 +188,9 @@ MonoBehaviour:
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
+  OnDamageWithSource:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-5520822273433223883
 MonoBehaviour:
   m_ObjectHideFlags: 0

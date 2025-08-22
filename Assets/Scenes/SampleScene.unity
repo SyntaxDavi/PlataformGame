@@ -14509,8 +14509,8 @@ Transform:
   m_GameObject: {fileID: 6460992767971240624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0456, y: -0.4855, z: 0}
-  m_LocalScale: {x: 0.43192914, y: 0.06835749, z: 1}
+  m_LocalPosition: {x: 0.0341, y: -0.486, z: 0}
+  m_LocalScale: {x: 0.8331763, y: 0.069225624, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5246331565877623898}
@@ -14617,7 +14617,7 @@ MonoBehaviour:
   JumpForce: 16
   FallGravityMultiplier: 5
   JumpCutMultiplier: 0.3
-  groundCheckSize: {x: 0.7, y: 0.1}
+  groundCheckSize: {x: 0.9, y: 0.1}
   groundCheck: {fileID: 1495727771570834543}
   groundLayer:
     serializedVersion: 2
@@ -14641,6 +14641,12 @@ MonoBehaviour:
   PrefabHealth: {fileID: 2910475686838755057, guid: 86e13d37e214a1d44b6a9e12935dd244, type: 3}
   MaxHealth: 5
   CurrentHealth: 0
+  invincibilityDuration: 1
+  invincibilityBlinkSpeed: 0.1
+  knockbackForce: 13
+  knockbackDuration: 0.4
+  shakeDuration: 0.08
+  shakeMagnitude: 0.11
 --- !u!20 &4621546732175784648
 Camera:
   m_ObjectHideFlags: 0
@@ -14881,7 +14887,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.028975964, y: -0.025255501}
+  m_Offset: {x: 0.02596, y: -0.025255501}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14891,7 +14897,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.49563456, y: 0.949489}
+  m_Size: {x: 0.43, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &8233185208771278233
 MonoBehaviour:

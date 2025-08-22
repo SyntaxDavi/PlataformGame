@@ -16,6 +16,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float knockbackForce = 12f;
     [SerializeField] private float knockbackDuration = 0.4f;
 
+    [Header("Feedback Visual ao Sofrer Dano")]
+    [Tooltip("Duração do tremor da câmera.")]
+    [SerializeField] private float shakeDuration = 0.3f;
+    [Tooltip("Intensidade (magnitude) do tremor da câmera.")]
+    [SerializeField] private float shakeMagnitude = 0.4f;
+
     private bool isInvincible = false;
     private bool isQuiting = false;
 
@@ -64,6 +70,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (CurrentHealth > 0)
         {
+            if(CameraFollow.Instance != null)
+            {
+                CameraFollow.Instance.Shake(shakeDuration, shakeMagnitude);
+            }
+
             Vector2 knockbackDirection = (transform.position - damageSource.position).normalized;
             knockbackDirection = (knockbackDirection + Vector2.up * 0.5f).normalized;
 
