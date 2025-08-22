@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponDamage: 10
   WeaponCoolDown: 0.1
-  BulletSpeed: 20
+  BulletSpeed: 22
   WeaponIcon: {fileID: 1784968741306181460, guid: 97701c17f5c1d9448b527caac1439bae, type: 3}

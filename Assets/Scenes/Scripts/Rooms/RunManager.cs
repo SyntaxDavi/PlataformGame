@@ -43,18 +43,26 @@ public class RunManager : MonoBehaviour
     {
         Debug.Log("RunManager se inscrevendo no evento OnPlayerReachedRoomExit.");
         GameEvents.OnPlayerReachedRoomExit += HandlePlayerReachedEndOfRoom;
+        GameEvents.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
         Debug.Log("RunManager se desinscrevendo do evento.");
         GameEvents.OnPlayerReachedRoomExit -= HandlePlayerReachedEndOfRoom;
+        GameEvents.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     private void HandlePlayerReachedEndOfRoom()
     {
         Debug.Log($"Fase atual: {currentPhase}. Carregando próxima sala...");
         LoadNextRoom();
+    }
+
+    private void HandlePlayerDeath()
+    {
+        Debug.Log("RunManager detectou a morte do jogador. Reiniciando a run...");
+        StartNewRun();
     }
     private void Start()
     {

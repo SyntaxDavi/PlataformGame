@@ -87,8 +87,8 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+            playerController.ChangeState(EPlayerState.Dead);
             GameEvents.TriggerPlayerDeath();
-            playerController.ChangeState(EPlayerState.Dead); 
         }
     }
 

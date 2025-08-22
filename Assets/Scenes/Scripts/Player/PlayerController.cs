@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 [RequireComponent(typeof(PlayerHealth))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -25,6 +25,15 @@ public class PlayerController : MonoBehaviour
         Attack = GetComponent<PlayerAttack>();
         animator = GetComponent<Animator>();
     }
+    private void OnEnable()
+    {
+        GameEvents.OnPlayerDeath += HandleRespawn;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnPlayerDeath -= HandleRespawn;
+    }
     private void Start()
     {
         ChangeState(EPlayerState.Idle);
@@ -35,7 +44,10 @@ public class PlayerController : MonoBehaviour
         Movement.HandleInputReading();
         HandleStateUpdate();
     }
-
+    private void HandleRespawn()
+    {
+        ChangeState(EPlayerState.Idle);
+    }
     private void HandleStateUpdate()
     {
         if (lockedStateTimer > 0)
