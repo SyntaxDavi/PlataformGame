@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d12c6055d4fca44489c3b0f8b17da894
+guid: ad735dcbcba54b44bbf5d8e56b0d10bc
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.025641028}
+    pivot: {x: 0.51724136, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 28
+      width: 29
       height: 39
-    spriteID: c0bf7c4c4a58bf645aeed5a5fcafe518
+    spriteID: 55268b1b33b2f4c4db92988143fc809f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,17 +150,17 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.026315792}
+    pivot: {x: 0.5925926, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 40
+      x: 41
       y: 4
-      width: 28
-      height: 38
-    spriteID: ea5e280bdf8398c47b1d11538b555d1f
+      width: 27
+      height: 39
+    spriteID: 3aaf4c6ff8a209146b1bd32b408c5bee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,10 +168,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 40, y: 4}
+    uvTransform: {x: 41, y: 4}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.02777778}
+    pivot: {x: 0.61538464, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -179,9 +179,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 76
       y: 4
-      width: 28
-      height: 36
-    spriteID: eacc96331e88fe946b32e49da0ec7dbe
+      width: 26
+      height: 39
+    spriteID: fa4c8acabe3a992489cceeac15b2968f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -195,12 +195,12 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3023805562
+      value0: 2238726803
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: PlayerFalling
+    name: PlayerAttack
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -209,29 +209,29 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 2
-        y: 1
-        width: 28
+        x: 1
+        y: 0
+        width: 29
         height: 39
-      spriteId: c0bf7c4c4a58bf645aeed5a5fcafe518
+      spriteId: 55268b1b33b2f4c4db92988143fc809f
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 2
-        y: 1
-        width: 28
-        height: 38
-      spriteId: ea5e280bdf8398c47b1d11538b555d1f
+        x: 0
+        y: 0
+        width: 27
+        height: 39
+      spriteId: 3aaf4c6ff8a209146b1bd32b408c5bee
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
-        x: 2
-        y: 1
-        width: 28
-        height: 36
-      spriteId: eacc96331e88fe946b32e49da0ec7dbe
+        x: 0
+        y: 0
+        width: 26
+        height: 39
+      spriteId: fa4c8acabe3a992489cceeac15b2968f
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

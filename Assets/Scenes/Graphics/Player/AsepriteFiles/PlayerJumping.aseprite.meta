@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d12c6055d4fca44489c3b0f8b17da894
+guid: 106b92436cf2d6d4d802c42e6f100843
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.025641028}
+    pivot: {x: 0.5769231, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 28
+      width: 26
       height: 39
-    spriteID: c0bf7c4c4a58bf645aeed5a5fcafe518
+    spriteID: 1ab7db6e73b869348a9aa68e910602ef
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,17 +150,17 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.026315792}
+    pivot: {x: 0.5769231, y: -0.025641028}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 40
-      y: 4
-      width: 28
-      height: 38
-    spriteID: ea5e280bdf8398c47b1d11538b555d1f
+      x: 4
+      y: 51
+      width: 26
+      height: 39
+    spriteID: a391601dd5997a74c9091fa83fe47ece
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,20 +168,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 40, y: 4}
+    uvTransform: {x: 4, y: 51}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.02777778}
+    pivot: {x: 0.53846157, y: -0.08333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 76
+      x: 38
       y: 4
-      width: 28
+      width: 26
       height: 36
-    spriteID: eacc96331e88fe946b32e49da0ec7dbe
+    spriteID: c5fbd12216f9afb4493126e45160c448
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -189,18 +189,39 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 4}
+    uvTransform: {x: 38, y: 4}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.53846157, y: -0.08333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 38
+      y: 48
+      width: 26
+      height: 36
+    spriteID: 40dcd32a04204a842839676b2466932f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 38, y: 48}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3023805562
+      value0: 1331860325
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: PlayerFalling
+    name: PlayerJumping
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -209,29 +230,38 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 2
-        y: 1
-        width: 28
+        x: 1
+        y: 0
+        width: 26
         height: 39
-      spriteId: c0bf7c4c4a58bf645aeed5a5fcafe518
+      spriteId: 1ab7db6e73b869348a9aa68e910602ef
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 2
+        x: 1
         y: 1
-        width: 28
-        height: 38
-      spriteId: ea5e280bdf8398c47b1d11538b555d1f
+        width: 26
+        height: 39
+      spriteId: a391601dd5997a74c9091fa83fe47ece
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
         x: 2
-        y: 1
-        width: 28
+        y: 3
+        width: 26
         height: 36
-      spriteId: eacc96331e88fe946b32e49da0ec7dbe
+      spriteId: c5fbd12216f9afb4493126e45160c448
+    - name: Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 2
+        y: 3
+        width: 26
+        height: 36
+      spriteId: 40dcd32a04204a842839676b2466932f
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -242,4 +272,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 40}
-  previousTextureSize: {x: 128, y: 64}
+  previousTextureSize: {x: 128, y: 128}
